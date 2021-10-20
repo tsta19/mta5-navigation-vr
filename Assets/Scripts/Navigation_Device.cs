@@ -9,8 +9,10 @@ public class Navigation_Device : MonoBehaviour
     [SerializeField] private LayerMask wallMask;
     [SerializeField] private GameObject currentHit;
     [SerializeField] private Vector3 objectiveCollision = Vector3.zero;
+
     [SerializeField] private Transform navDevicePointer;
     [SerializeField] private Transform objectivePos;
+
     private LineRenderer lineRenderer;
         
     void Start()
@@ -31,9 +33,8 @@ public class Navigation_Device : MonoBehaviour
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, navDevicePointer.transform.position);
             lineRenderer.SetPosition(1, objectivePos.transform.position);
-            Debug.Log(Vector3.Distance(navDevicePointer.transform.position, objectivePos.transform.position));
-        }
-        else 
+            var playerDistFromObj = Vector3.Distance(navDevicePointer.transform.position, objectivePos.transform.position);
+        } else 
         {
             return;
         }
@@ -56,7 +57,7 @@ public class Navigation_Device : MonoBehaviour
 
             if (currentHit.CompareTag(objectiveTag))
             {
-                // If object is hit, code goes here
+                // If objective is hit, code goes here
             }
         }
     }
