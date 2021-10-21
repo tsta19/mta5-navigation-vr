@@ -4,45 +4,50 @@ using UnityEngine;
 
 public class Player_Tracking : MonoBehaviour
 {
-    [SerializeField] private Transform playerPosition;
-    [SerializeField] private GameObject playerTracerObject;
+	[SerializeField] private Transform playerPosition;
+	[SerializeField] private GameObject playerTracerObject;
 
-    private double nextTracerTime = 0.0f;
-    private double timeBetweenTracer = .5f;
-    private int playerPosCounter = 0;
+	private float nextTracerTime = 0.0f; // Time before next tracer will be placed (Now instantenous)
+	private float timeBetweenTracer = 1.0f; // In seconds
+	private int playerPosCounter = 0; // Counter which controls the amount of positions it will trace before disabling
 
-    List<Vector3> playerPositionsArray = new List<Vector3>();
-    List<float> totalDistanceBtwPoints = new List<float>();
+	List<Vector3> playerPositionsArray = new List<Vector3>();
+	List<float> totalDistanceBtwPoints = new List<float>();
+	
+	private LineRenderer lineRenderer;
 
-    private LineRenderer lineRenderer;
+	void Start()
+	{
+		lineRenderer = GetComponent<LineRenderer>();
+	}
 
+	void Update()
+	{
+		if (playerPosCounter != 45)
+		{
+			if (Time.time > nextTracerTime)
+			{
+				nextTracerTime += timeBetweenTracer;
+				playerPositionsArray.Add(playerPosition.position);
+				playerPosCounter++;
+				Debug.Log(playerPosCounter);
+			}
+		} else
+		{
+			TrackPlayerPosition(playerPositionsArray);
+		}
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (playerPosCounter != 20)
-        {
-            if (Time.time > nextTracerTime)
-            {
-                nextTracerTime += timeBetweenTracer;
-                playerPositionsArray.Add(playerPosition.position);
-                playerPosCounter++;
-                Debug.Log(playerPosCounter);
-                // for (int i = 0; i < playerPositionsArray.Count; i++)
-                // {
-                //Debug.Log(playerPositionsArray[i].ToString() + " ARRAY POSITION");
-                //Debug.Log(playerPositionsArray.Count + " ARRAY LENGTH");
-                // }
-            }
-        }
-    }
+	void TrackPlayerPosition(List<Vector3> arrayReceive)
+	{
 
-    void CalcDistBtwPoints()
-    {
-        for (int i = 0; i < playerPositionsArray.Count; i++)
-        {
-            totalDistanceBtwPoints.Add(Vector3.Distance(playerPositionsArray[i], playerPositionsArray[i + 1]));
-            Debug.Log("DISTANCE BTW POINTS " + totalDistanceBtwPoints[i]);
-        }
-    }
+		for (int i = 0; i < (arrayReceive.Count - 1); i++)
+		{
+			lineRenderer.SetVertexCount(arrayReceive.Count);
+			lineRenderer.positionCount = arrayReceive.Count;
+			lineRenderer.SetPosition(i, arrayReceive[i]);
+			lineRenderer.SetPosition(i + 1, arrayReceive[i + 1]);
+		}
+	}
 }
+
