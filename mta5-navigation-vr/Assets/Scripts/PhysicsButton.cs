@@ -19,7 +19,7 @@ public class PhysicsButton : MonoBehaviour
 
     // Vi bruger physicsButton til enten at starte en timer eller skifte level.
     public bool endpoint;
-    private int levelIndex = 0;
+    private int levelIndex;
     
     // Timers til at måle tid
     private float[] timers;
@@ -33,7 +33,7 @@ public class PhysicsButton : MonoBehaviour
         //start positionen er sat til knappens lokale position, da det er knappens position vi er ude efter, og ikke en position kontra en anden position.
         startPos = transform.localPosition;
         joint = GetComponent<ConfigurableJoint>();
-      
+        timers = new float[5];
     }
 
     // Update is called once per frame
@@ -44,12 +44,16 @@ public class PhysicsButton : MonoBehaviour
             if (endpoint)
             {
                 timers[levelIndex] = Time.time - timers[levelIndex];
+                Debug.Log("Timer stopped");
+                Debug.Log("TIME: " + timers[levelIndex]);
+                
+                Debug.Log("New maze started");
                 levelIndex++;
-                Debug.Log("new maze started");
             }
             if (!endpoint)
             {
                 timers[levelIndex] = Time.time;
+                Debug.Log("Timer started");
             }
             
         }

@@ -398,7 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7491204043560599933}
   m_Layer: 0
-  m_Name: EndPoint
+  m_Name: Buttonpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

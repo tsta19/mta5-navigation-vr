@@ -5,7 +5,6 @@ using UnityEngine;
 public class FinalFreqDire : MonoBehaviour
 {
     private Vector3 _directionVector;
-    public Transform objective;
     private float angle;
     public AudioSource[] audioSources;
     private AudioSource sonar1;
@@ -20,7 +19,7 @@ public class FinalFreqDire : MonoBehaviour
     public GameObject[] wayPoints;
     private GameObject waypoint;
     private GameObject currentWayPoint;
-    private int arrayIndex = 1;
+    private int arrayIndex = 0;
     private List<GameObject> sortedWaypoint;
     private float savedDist;
     private float currentDist;
@@ -45,8 +44,11 @@ public class FinalFreqDire : MonoBehaviour
         {
             waypoint = GameObject.Find("Waypoint" + i);
             sortedWaypoint.Add(waypoint);
+            print("LÆNGDE" + wayPoints.Length);
+            print("NAVN" + waypoint);
+            
         }
-
+        print("sorted" + sortedWaypoint);
         updateCurrentWayPoint();
     }
 
@@ -68,7 +70,7 @@ public class FinalFreqDire : MonoBehaviour
         }
 
         currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
-        Debug.Log(1 - currentDist / savedDist);
+        
     }
 
     void startDetection()
@@ -78,9 +80,10 @@ public class FinalFreqDire : MonoBehaviour
 
         //beregner vinkel mellem retningsvektor og nav-device's frontvektor
         angle = Vector3.SignedAngle(_directionVector, transform.forward, Vector3.forward);
-
+      
         //Scaler level efter grader (op til vinkelret)
         level = Mathf.Abs(Mathf.CeilToInt(angle / 18));
+        
         if (Mathf.Abs(holder) != Mathf.Abs(angle))
         {
             if (level < 5)
@@ -98,10 +101,12 @@ public class FinalFreqDire : MonoBehaviour
 
     void updateCurrentWayPoint()
     {
-        currentWayPoint = wayPoints[wayPoints.Length - arrayIndex];
+        currentWayPoint = sortedWaypoint[arrayIndex];
         arrayIndex += 1;
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
+        Debug.Log("current" + currentWayPoint);
+        
     }
 }
