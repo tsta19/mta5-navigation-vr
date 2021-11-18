@@ -7,7 +7,7 @@ public class Player_Tracking : MonoBehaviour
 	[SerializeField] private Transform playerPosition;
 	[SerializeField] private GameObject playerTracerObject;
 
-	private float nextTracerTime = 0.0f; // Time before next tracer will be placed (Now instantenous)
+	private float nextTracerTime = 0.0f; // Time before next tracer will be placed (Now instantaneous)
 	private float timeBetweenTracer = 1.0f; // In seconds
 	private int playerPosCounter = 0; // Counter which controls the amount of positions it will trace before disabling
 
