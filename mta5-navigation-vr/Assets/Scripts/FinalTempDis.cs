@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
 
 public class FinalTempDis : MonoBehaviour
 {
@@ -28,6 +30,8 @@ public class FinalTempDis : MonoBehaviour
     public float startDis;
     public float normalizedValue;
     public float pitchMap;
+    public InputActionReference toggleReference = null;
+    public InputActionReference toggleOffReference = null;
 
     //Start function whitch initializes some starting variables.
     void Start()
@@ -74,26 +78,26 @@ public class FinalTempDis : MonoBehaviour
         distanceFromPlayerToObjective();
 
         // When you press 1 this code starts playing the audiosource sound and loops it, and starts the timer.
-        if (Input.GetButtonDown("button1"))
+        //if (Input.GetButtonDown("button1"))
 
-        {
-            audioSource.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / audioSource.pitch);
-            timerStart = Time.time;
-            audioSource.Play();
-            audioSource.loop = true;
+        //{
+        //    audioSource.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / audioSource.pitch);
+        //    timerStart = Time.time;
+        //    audioSource.Play();
+        //    audioSource.loop = true;
 
 
-        }
+        //}
 
-        // When you press 2 this code runs which saves the time spent listening and stops the looping.
-        if (Input.GetButtonDown("button2"))
-        {
-            timerEnd = Time.time;
-            timeSpentHolder = timerEnd - timerStart;
-            timeSpent += timeSpentHolder;
-            Debug.Log("Total button time spent: " + timeSpent);
-            audioSource.loop = false;
-        }
+        //// When you press 2 this code runs which saves the time spent listening and stops the looping.
+        //if (Input.GetButtonDown("button2"))
+        //{
+        //    timerEnd = Time.time;
+        //    timeSpentHolder = timerEnd - timerStart;
+        //    timeSpent += timeSpentHolder;
+        //    Debug.Log("Total button time spent: " + timeSpent);
+        //    audioSource.loop = false;
+        //}
     }
 
     // Thomas kode.
@@ -132,5 +136,34 @@ public class FinalTempDis : MonoBehaviour
                 // If objective is hit, code goes here
             }
         }
+    }
+
+    private void Awake()
+    {
+        toggleReference.action.started += Toggle;
+        toggleOffReference.action.started += ToggleOff;
+    }
+
+    private void OnDestroy()
+    {
+        toggleReference.action.started -= Toggle;
+        toggleOffReference.action.started -= ToggleOff;
+    }
+
+    private void Toggle(InputAction.CallbackContext context)
+    {
+        audioSource.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / audioSource.pitch);
+        timerStart = Time.time;
+        audioSource.Play();
+        audioSource.loop = true;
+    }
+
+    private void ToggleOff(InputAction.CallbackContext context)
+    {
+        timerEnd = Time.time;
+        timeSpentHolder = timerEnd - timerStart;
+        timeSpent += timeSpentHolder;
+        Debug.Log("Total button time spent: " + timeSpent);
+        audioSource.loop = false;
     }
 }

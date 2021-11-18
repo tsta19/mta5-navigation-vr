@@ -897,6 +897,52 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Custom",
+            "id": "83ee0ca4-03ba-4c90-bdcf-0145c90c5fac",
+            "actions": [
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "b06d8693-6ff0-4288-9fc5-7d829315f66d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ToggleOff",
+                    "type": "Button",
+                    "id": "ad0e1aed-12ba-4b30-b2ca-547312025d3e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "21c2d7a0-0c86-4239-9f32-8671fbe9dd2a",
+                    "path": "<OculusTouchController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "646b11f8-ccb1-46b8-9102-070a1df28d5b",
+                    "path": "<OculusTouchController>/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleOff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
