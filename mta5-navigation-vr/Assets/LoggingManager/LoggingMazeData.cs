@@ -22,7 +22,7 @@ public class LoggingMazeData : MonoBehaviour
     {
         logData();
         
-        if (Input.GetKey("o"))
+        if (Input.GetKey("space"))
         {
             loggingManager.SaveLog(csvFileName);
             loggingManager.ClearLog(csvFileName);
@@ -38,12 +38,12 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "Sex", placeholder);
         loggingManager.Log(csvFileName, "TestID", placeholder);
         loggingManager.Log(csvFileName, "ParticipantID", placeholder);
-        loggingManager.Log(csvFileName, "Alder", placeholder);
+        loggingManager.Log(csvFileName, "Age", placeholder);
+        loggingManager.Log(csvFileName, "MotionSickness", placeholder);
         loggingManager.Log(csvFileName, "Maze", placeholder);
         loggingManager.Log(csvFileName, "VariableCondition", placeholder);
         loggingManager.Log(csvFileName, "Freq/Tempo", placeholder);
         loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
-        loggingManager.Log(csvFileName, "NewTestStart", placeholder);
         loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
         
         // Event Logger
