@@ -22,7 +22,7 @@ public class LoggingMazeData : MonoBehaviour
     {
         logData();
         
-        if (Input.GetKey("space"))
+        if (Input.GetKey("o"))
         {
             loggingManager.SaveLog(csvFileName);
             loggingManager.ClearLog(csvFileName);
@@ -55,12 +55,12 @@ public class LoggingMazeData : MonoBehaviour
         
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", placeholder);
-        loggingManager.Log(csvFileName, "TimeSinceLastFrame", placeholder);
+        loggingManager.Log(csvFileName, "TimeSinceLastFrame", Time.deltaTime);
         loggingManager.Log(csvFileName, "MazeTime", placeholder);
         loggingManager.Log(csvFileName, "EvaluationTime", placeholder);
-        loggingManager.Log(csvFileName, "PlayerPositionX", placeholder);
-        loggingManager.Log(csvFileName, "PlayerPositionY", placeholder);
-        loggingManager.Log(csvFileName, "PlayerPositionZ", placeholder);
+        loggingManager.Log(csvFileName, "PlayerPositionX", player.transform.position.x);
+        loggingManager.Log(csvFileName, "PlayerPositionY", player.transform.position.y);
+        loggingManager.Log(csvFileName, "PlayerPositionZ", player.transform.position.z);
         
         // loggingManager.Log(csvFileName, "VarName", placeholder); - Template for more variables
     }
