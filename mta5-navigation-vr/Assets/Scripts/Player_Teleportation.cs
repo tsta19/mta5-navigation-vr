@@ -20,7 +20,7 @@ public class Player_Teleportation : MonoBehaviour
     public float fadeAmount;
 
     // Debug Boolean
-    private bool showDebug = false;
+    private bool showDebug = true;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -62,7 +62,7 @@ public class Player_Teleportation : MonoBehaviour
         Color objectColor = blackOut.GetComponent<Image>().color;
         objectColor = new Color(objectColor.r, objectColor.g, objectColor.g, fadeAmount);
         blackOut.GetComponent<Image>().color = objectColor;
-        fadeAmount = (float)(objectColor.a + (0.5 * Time.deltaTime));
+        fadeAmount = (float)(objectColor.a + (5f * Time.deltaTime));
         if (objectColor.a == 255) { objectColor.a = 0; }
     }
 }
