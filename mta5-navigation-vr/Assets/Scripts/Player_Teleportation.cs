@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Player_Teleportation : MonoBehaviour
 {
     // Player Reference
@@ -16,6 +16,8 @@ public class Player_Teleportation : MonoBehaviour
     private bool teleportActive2;
     private bool teleportActive3;
     private bool teleportActive4;
+    public GameObject blackOut;
+    public float fadeAmount;
 
     // Debug Boolean
     private bool showDebug = false;
@@ -25,7 +27,10 @@ public class Player_Teleportation : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             player.transform.position = teleportTarget.transform.position;
-            if (showDebug) { print("You have collided with the 1. teleporter"); }
+            if (showDebug) { 
+                print("You have collided with the 1. teleporter");
+                fade();
+            }
             teleportActive1 = false;
         }
         
@@ -49,5 +54,15 @@ public class Player_Teleportation : MonoBehaviour
             if (showDebug) { print("You have collided with the 4. teleporter"); }
             teleportActive4 = false;
         }
+    }
+
+    public void fade()
+    {
+        
+        Color objectColor = blackOut.GetComponent<Image>().color;
+        objectColor = new Color(objectColor.r, objectColor.g, objectColor.g, fadeAmount);
+        blackOut.GetComponent<Image>().color = objectColor;
+        fadeAmount = (float)(objectColor.a + (0.5 * Time.deltaTime));
+        if (objectColor.a == 255) { objectColor.a = 0; }
     }
 }
