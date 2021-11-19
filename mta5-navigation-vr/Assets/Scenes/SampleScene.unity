@@ -1373,7 +1373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &195544322
 Transform:
   m_ObjectHideFlags: 0
@@ -2815,11 +2815,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6264275240382349332, guid: 840ecd288abc77f47855b76e8bb368ea, type: 3}
   m_PrefabInstance: {fileID: 7350778010246327927}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &670923961 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8997275022104625372, guid: 840ecd288abc77f47855b76e8bb368ea, type: 3}
-  m_PrefabInstance: {fileID: 7350778010246327927}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &670923962
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2916,39 +2911,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &670923963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670923960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cdd7e8fc6320d04eaaf711bff5977b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectiveTag: Objective
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 0
-  currentHit: {fileID: 0}
-  objectiveCollision: {x: 0, y: 0, z: 0}
-  navDevicePointer: {fileID: 670923961}
-  objectivePos: {fileID: 311232355}
-  playerDistFromObj: 0
-  audioSource: {fileID: 670923962}
-  holder: 0
-  audioMixPitch: 0
-  timerStart: 0
-  timerEnd: 0
-  timeSpentHolder: 0
-  timeSpent: 0
-  startDis: 0
-  normalizedValue: 0
-  pitchMap: 0
-  toggleReference: {fileID: -7159406960892402184, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  toggleOffReference: {fileID: 934307714019974295, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!120 &670923964
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -9490,6 +9452,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7350778009216479007, guid: 840ecd288abc77f47855b76e8bb368ea, type: 3}
+    - {fileID: 3288909135343768146, guid: 840ecd288abc77f47855b76e8bb368ea, type: 3}
+    - {fileID: 3995603663368901582, guid: 840ecd288abc77f47855b76e8bb368ea, type: 3}
+    - {fileID: 5521922824648814510, guid: 840ecd288abc77f47855b76e8bb368ea, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 840ecd288abc77f47855b76e8bb368ea, type: 3}
 --- !u!1 &7350778010246327928 stripped
 GameObject:
@@ -9976,3 +9941,60 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &7350778010246327934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6863925310085827328, guid: 840ecd288abc77f47855b76e8bb368ea, type: 3}
+  m_PrefabInstance: {fileID: 7350778010246327927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7350778010246327935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7350778010246327928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee72e23e338f7ad4e8a12e8d7065b2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSources: []
+  timerLimit: 0
+  startTimer: 0
+  toggleReference: {fileID: -7159406960892402184, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  toggleOffReference: {fileID: 934307714019974295, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  checker: {fileID: 5008967538784374505, guid: bdcac7e7522e46a409ba5a91af9c3cfc, type: 3}
+  wayPoints: []
+--- !u!114 &7350778010246327936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7350778010246327928}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cdd7e8fc6320d04eaaf711bff5977b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveTag: Objective
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
+  currentHit: {fileID: 0}
+  objectiveCollision: {x: 0, y: 0, z: 0}
+  navDevicePointer: {fileID: 7350778010246327934}
+  objectivePos: {fileID: 311232355}
+  playerDistFromObj: 0
+  audioSource: {fileID: 670923962}
+  holder: 0
+  audioMixPitch: 0
+  timerStart: 0
+  timerEnd: 0
+  timeSpentHolder: 0
+  timeSpent: 0
+  startDis: 0
+  normalizedValue: 0
+  pitchMap: 0
+  toggleReference: {fileID: 0}
+  toggleOffReference: {fileID: 0}

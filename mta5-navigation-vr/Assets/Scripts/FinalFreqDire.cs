@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FinalFreqDire : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class FinalFreqDire : MonoBehaviour
     public float timerLimit;
     private float timer;
     public bool startTimer;
+    public InputActionReference toggleReference = null;
+    public InputActionReference toggleOffReference = null;
 
     //waypoint varibles
     public WayPointChecker checker;
@@ -34,7 +37,7 @@ public class FinalFreqDire : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
 
         holder = Mathf.Abs(angle);
-        startTimer = true;
+        startTimer = false;
         timerLimit = 1;
 
         //Find all waypoints in the 
@@ -54,11 +57,13 @@ public class FinalFreqDire : MonoBehaviour
 
     void Update()
     {
+ 
         if (startTimer)
         {
             timer += Time.deltaTime;
             if (timer >= timerLimit)
             {
+                Debug.Log("hejsa");
                 startDetection();
                 timer = 0f;
             }
@@ -80,10 +85,10 @@ public class FinalFreqDire : MonoBehaviour
 
         //beregner vinkel mellem retningsvektor og nav-device's frontvektor
         angle = Vector3.SignedAngle(_directionVector, transform.forward, Vector3.forward);
-      
+        Debug.Log("angle: " + angle);
         //Scaler level efter grader (op til vinkelret)
         level = Mathf.Abs(Mathf.CeilToInt(angle / 18));
-        
+        Debug.Log("level: " + level);
         if (Mathf.Abs(holder) != Mathf.Abs(angle))
         {
             if (level < 5)
@@ -108,5 +113,28 @@ public class FinalFreqDire : MonoBehaviour
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         Debug.Log("current" + currentWayPoint);
         
+    }
+
+    private void Awake()
+    {
+        toggleReference.action.started += Toggle;
+        toggleOffReference.action.started += ToggleOff;
+    }
+
+    private void OnDestroy()
+    {
+        toggleReference.action.started -= Toggle;
+        toggleOffReference.action.started -= ToggleOff;
+    }
+
+    private void Toggle(InputAction.CallbackContext context)
+    {
+        Debug.Log("knaptryk");
+        startTimer = true;
+    }
+
+    private void ToggleOff(InputAction.CallbackContext context)
+    {
+        startTimer = false;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class directionScript : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class directionScript : MonoBehaviour
     public float timerLimit;
     public float timer;
     public bool startTimer;
+    public InputActionReference toggleReference = null;
+    public InputActionReference toggleOffReference = null;
 
 
 
@@ -86,6 +89,37 @@ public class directionScript : MonoBehaviour
         
         
     }
-    
+
+    private void Awake()
+    {
+        toggleReference.action.started += Toggle;
+        toggleOffReference.action.started += ToggleOff;
+    }
+
+    private void OnDestroy()
+    {
+        toggleReference.action.started -= Toggle;
+        toggleOffReference.action.started -= ToggleOff;
+    }
+
+    private void Toggle(InputAction.CallbackContext context)
+    {
+        startTimer = true;
+        if (startTimer)
+        {
+            timer += Time.deltaTime;
+            if (timer >= timerLimit)
+            {
+                startDetection();
+                timer = 0f;
+            }
+        }
+    }
+
+    private void ToggleOff(InputAction.CallbackContext context)
+    {
+        startTimer = false;
+    }
+
 }
 

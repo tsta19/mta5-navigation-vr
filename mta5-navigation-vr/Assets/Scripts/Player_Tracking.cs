@@ -29,7 +29,7 @@ public class Player_Tracking : MonoBehaviour
 				nextTracerTime += timeBetweenTracer;
 				playerPositionsArray.Add(playerPosition.position);
 				playerPosCounter++;
-				Debug.Log(playerPosCounter);
+
 			}
 		} else
 		{

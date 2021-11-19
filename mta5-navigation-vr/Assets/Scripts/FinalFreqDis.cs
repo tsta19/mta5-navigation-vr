@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FinalFreqDis : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class FinalFreqDis : MonoBehaviour
     private float distance;
     private float distanceHolder;
     private float distanceScaled;
+    public InputActionReference toggleReference = null;
+    public InputActionReference toggleOffReference = null;
 
     //waypoint varibles
     public WayPointChecker checker;
@@ -111,5 +114,29 @@ public class FinalFreqDis : MonoBehaviour
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
     }
+    private void Awake()
+    {
+        toggleReference.action.started += Toggle;
+        toggleOffReference.action.started += ToggleOff;
+    }
 
+    private void OnDestroy()
+    {
+        toggleReference.action.started -= Toggle;
+        toggleOffReference.action.started -= ToggleOff;
+    }
+
+    private void Toggle(InputAction.CallbackContext context)
+    {
+        Debug.Log("knaptryk");
+        startTimer = true;
+    }
+
+    private void ToggleOff(InputAction.CallbackContext context)
+    {
+        startTimer = false;
+    }
 }
+
+
+
