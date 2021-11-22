@@ -24,7 +24,7 @@ public class FinalFreqDis : MonoBehaviour
     public GameObject[] wayPoints;
     private GameObject waypoint;
     public GameObject currentWayPoint;
-    private int arrayIndex = 1;
+    private int arrayIndex = 0;
     private List<GameObject> sortedWaypoint;
     private float savedDist;
     private float currentDist;
@@ -32,13 +32,13 @@ public class FinalFreqDis : MonoBehaviour
 
     void Start()
     {
-        //Henter audiokilder vi har smidt pÂ objektet i rúkkef¯lge: lav Hz -> h¯j Hz
+        //Henter audiokilder vi har smidt p√• objektet i r≈ìkkef√∏lge: lav Hz -> h√∏j Hz
         audioSources = GetComponents<AudioSource>();
         holder = distance;
         startTimer = true;
         timerLimit = 1;
 
-        //Her skal "objective" reprúsentere waypointet, og nok ned i Update med noget if statement der styrer hvilket waypoint vi skal mod
+        //Her skal "objective" repr≈ìsentere waypointet, og nok ned i Update med noget if statement der styrer hvilket waypoint vi skal mod
         distanceHolder = Vector3.Distance(transform.position, objective.transform.position);
 
         //Finder alle waypoints og sorter dem
@@ -55,14 +55,8 @@ public class FinalFreqDis : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Button1"))
-        {
-            Debug.Log("dafaq" + audioSources.Length);
-            sonar = audioSources[1];
-            sonar.Play();
-        }
 
-        if (startTimer) //K¯rer funktionen i det definerede interval
+        if (startTimer) //K√∏rer funktionen i det definerede interval
         {
             timer += Time.deltaTime;
             if (timer >= timerLimit)
@@ -83,14 +77,14 @@ public class FinalFreqDis : MonoBehaviour
 
     void startDistanceDetection(Transform navdevice, Transform objectives)
     {
-        // Vi beregner nuvúrende afstand fra nav-device til waypoint og skalerer ift. den fulde afstand fra os til waypoint
+        // Vi beregner nuv≈ìrende afstand fra nav-device til waypoint og skalerer ift. den fulde afstand fra os til waypoint
         distance = Vector3.Distance(navdevice.position, currentWayPoint.transform.position);
         distanceScaled = 1 - (distance / distanceHolder);
 
-        //Vi har 5 levels og laver procentvis fremgang for hver 20% túttere vi kommer pÂ waypoint (100/5=20)
+        //Vi har 5 levels og laver procentvis fremgang for hver 20% t≈ìttere vi kommer p√• waypoint (100/5=20)
         level = Mathf.CeilToInt((distanceScaled * 100f) / 20f);
 
-        if (holder != distance) //Vi gider ikke lave noget nÂr der ikke er nogen aktivitet alligevel
+        if (holder != distance) //Vi gider ikke lave noget n√•r der ikke er nogen aktivitet alligevel
         {
             if (level < 5)
             {
@@ -108,7 +102,7 @@ public class FinalFreqDis : MonoBehaviour
 
     void updateCurrentWayPoint()
     {
-        currentWayPoint = wayPoints[wayPoints.Length - arrayIndex];
+        currentWayPoint = sortedWaypoint[arrayIndex];
         arrayIndex += 1;
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;

@@ -21,17 +21,27 @@ public class FinalTempDis : MonoBehaviour
     public AudioSource audioSource;
     private float pitchStart = 0.508f;
     private float pitchNow;
-    public float holder;
+    private float holder;
     public float audioMixPitch;
-    public float timerStart;
-    public float timerEnd;
-    public float timeSpentHolder;
-    public float timeSpent;
-    public float startDis;
-    public float normalizedValue;
-    public float pitchMap;
+    private float timerStart;
+    private float timerEnd;
+    private float timeSpentHolder;
+    private float timeSpent;
+    private float startDis;
+    private float normalizedValue;
+    private float pitchMap;
     public InputActionReference toggleReference = null;
     public InputActionReference toggleOffReference = null;
+    
+    //waypoint varibles
+    public WayPointChecker checker;
+    public GameObject[] wayPoints;
+    private GameObject waypoint;
+    private GameObject currentWayPoint;
+    private int arrayIndex = 0;
+    private List<GameObject> sortedWaypoint;
+    private float savedDist;
+    private float currentDist;
 
     //Start function whitch initializes some starting variables.
     void Start()
@@ -42,6 +52,21 @@ public class FinalTempDis : MonoBehaviour
         Initialization();
         Debug.Log("startdisfromobj: " + playerDistFromObj);
         startDis = playerDistFromObj;
+        
+        //Find all waypoints in the 
+        wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
+        sortedWaypoint = new List<GameObject>();
+        for (int i = 1; i <= wayPoints.Length; i++)
+        {
+            waypoint = GameObject.Find("Waypoint" + i);
+            sortedWaypoint.Add(waypoint);
+            print("LÆNGDE" + wayPoints.Length);
+            print("NAVN" + waypoint);
+            
+        }
+        print("sorted" + sortedWaypoint);
+        updateCurrentWayPoint();
+        
     }
 
     void Update()
@@ -70,6 +95,13 @@ public class FinalTempDis : MonoBehaviour
                 // Makes sure the pitch doesn't go over or under max or min value.
                 audioSource.pitch = pitchNow;
             }
+            
+            if (checker.imActive == false && arrayIndex < wayPoints.Length)
+            {
+                updateCurrentWayPoint();
+            }
+
+            currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
 
 
         }
@@ -166,4 +198,16 @@ public class FinalTempDis : MonoBehaviour
         Debug.Log("Total button time spent: " + timeSpent);
         audioSource.loop = false;
     }
+    
+    void updateCurrentWayPoint()
+    {
+        currentWayPoint = sortedWaypoint[arrayIndex];
+        arrayIndex += 1;
+        checker = currentWayPoint.GetComponent<WayPointChecker>();
+        checker.imActive = true;
+        savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
+        Debug.Log("current" + currentWayPoint);
+        
+    }
+    
 }
