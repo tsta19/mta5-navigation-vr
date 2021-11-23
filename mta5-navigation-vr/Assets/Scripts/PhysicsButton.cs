@@ -54,6 +54,7 @@ public class PhysicsButton : MonoBehaviour
             {
                 timers[levelIndex] = Time.time;
                 Debug.Log("Timer started");
+                WayPointChecker.MazeTag += 1;
             }
             
         }

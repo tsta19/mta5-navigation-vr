@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WayPointChecker : MonoBehaviour
 {
+    public static int MazeID;
+    public static int MazeTag;
     public bool imActive;
 
     private void OnTriggerEnter(Collider other)

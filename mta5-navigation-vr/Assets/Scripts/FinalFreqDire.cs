@@ -39,20 +39,8 @@ public class FinalFreqDire : MonoBehaviour
         holder = Mathf.Abs(angle);
         startTimer = false;
         timerLimit = 1;
-
-        //Find all waypoints in the 
-        wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
-        sortedWaypoint = new List<GameObject>();
-        for (int i = 1; i <= wayPoints.Length; i++)
-        {
-            waypoint = GameObject.Find("Waypoint" + i);
-            sortedWaypoint.Add(waypoint);
-            print("LÆNGDE" + wayPoints.Length);
-            print("NAVN" + waypoint);
-            
-        }
-        print("sorted" + sortedWaypoint);
-        updateCurrentWayPoint();
+        
+        updateSortedArray();
     }
 
     void Update()
@@ -114,7 +102,26 @@ public class FinalFreqDire : MonoBehaviour
         Debug.Log("current" + currentWayPoint);
         
     }
-
+    
+    void updateSortedArray()
+    {
+        //Find all waypoints in the 
+        wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
+        sortedWaypoint = new List<GameObject>();
+        for (int i = 1; i <= wayPoints.Length; i++)
+        {
+            if (WayPointChecker.MazeID == WayPointChecker.MazeTag)
+            {
+                waypoint = GameObject.Find("Waypoint" + i);
+                sortedWaypoint.Add(waypoint);
+                print("LÆNGDE" + wayPoints.Length);
+                print("NAVN" + waypoint);
+            }
+        }
+        print("sorted" + sortedWaypoint);
+        updateCurrentWayPoint();
+    }    
+    
     private void Awake()
     {
         toggleReference.action.started += Toggle;

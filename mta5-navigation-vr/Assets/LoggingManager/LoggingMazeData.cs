@@ -40,7 +40,7 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "ParticipantID", placeholder);
         loggingManager.Log(csvFileName, "Age", placeholder);
         loggingManager.Log(csvFileName, "MotionSickness", placeholder);
-        loggingManager.Log(csvFileName, "Maze", placeholder);
+        loggingManager.Log(csvFileName, "MazeID", placeholder);
         loggingManager.Log(csvFileName, "VariableCondition", placeholder);
         loggingManager.Log(csvFileName, "Freq/Tempo", placeholder);
         loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
