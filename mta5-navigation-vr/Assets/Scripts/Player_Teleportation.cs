@@ -9,60 +9,46 @@ public class Player_Teleportation : MonoBehaviour
     public GameObject player;
 
     // Teleport Reference
-    public Transform teleportTarget;
+    public Transform teleportTarget1;
+    public Transform teleportTarget2;
+    public Transform teleportTarget3;
+    public Transform teleportTarget4;
+    public Transform teleportTarget5;
     
-    // Teleportation Booleans
-    private bool teleportActive1;
-    private bool teleportActive2;
-    private bool teleportActive3;
-    private bool teleportActive4;
-    public GameObject blackOut;
-    public float fadeAmount;
 
     // Debug Boolean
-    private bool showDebug = true;
+    private bool showDebug = false;
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 1)
         {
-            player.transform.position = teleportTarget.transform.position;
-            if (showDebug) { 
-                print("You have collided with the 1. teleporter");
-                fade();
-            }
-            teleportActive1 = false;
+            player.transform.position = teleportTarget1.transform.position;
+            if (showDebug) { print("You have collided with the 1. teleporter"); }
         }
         
-        if (col.gameObject.CompareTag("Player") && !teleportActive1)
+        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 2)
         {
-            player.transform.position = teleportTarget.transform.position;
+            player.transform.position = teleportTarget2.transform.position;
             if (showDebug) { print("You have collided with the 2. teleporter"); }
-            teleportActive2 = false;
         }
         
-        if (col.gameObject.CompareTag("Player") && !teleportActive1 && !teleportActive2)
+        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 3)
         {
-            player.transform.position = teleportTarget.transform.position;
+            player.transform.position = teleportTarget3.transform.position;
             if (showDebug) { print("You have collided with the 3. teleporter"); }
-            teleportActive3 = false;
         }
         
-        if (col.gameObject.CompareTag("Player") && !teleportActive1 && !teleportActive2 && !teleportActive3)
+        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 4)
         {
-            player.transform.position = teleportTarget.transform.position;
+            player.transform.position = teleportTarget4.transform.position;
             if (showDebug) { print("You have collided with the 4. teleporter"); }
-            teleportActive4 = false;
         }
-    }
-
-    public void fade()
-    {
         
-        Color objectColor = blackOut.GetComponent<Image>().color;
-        objectColor = new Color(objectColor.r, objectColor.g, objectColor.g, fadeAmount);
-        blackOut.GetComponent<Image>().color = objectColor;
-        fadeAmount = (float)(objectColor.a + (5f * Time.deltaTime));
-        if (objectColor.a == 255) { objectColor.a = 0; }
+        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 5)
+        {
+            player.transform.position = teleportTarget5.transform.position;
+            if (showDebug) { print("You have collided with the 5. teleporter"); }
+        }
     }
 }

@@ -13,6 +13,7 @@ public class WayPointChecker : MonoBehaviour
         if (other.gameObject.tag == "Player") {
             imActive = false;
             Debug.Log("HE GOT ME!");
+            //confirmationsound
         }
     }
 }

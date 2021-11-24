@@ -16,6 +16,7 @@ public class PhysicsButton : MonoBehaviour
     private bool isPressed;
     private Vector3 startPos;
     private ConfigurableJoint joint;
+    private Randomizer randomizer;
 
     // Vi bruger physicsButton til enten at starte en timer eller skifte level.
     public bool endpoint;
@@ -33,6 +34,7 @@ public class PhysicsButton : MonoBehaviour
         //start positionen er sat til knappens lokale position, da det er knappens position vi er ude efter, og ikke en position kontra en anden position.
         startPos = transform.localPosition;
         joint = GetComponent<ConfigurableJoint>();
+        randomizer = GetComponent<Randomizer>();
         timers = new float[5];
     }
 
@@ -49,6 +51,7 @@ public class PhysicsButton : MonoBehaviour
                 
                 Debug.Log("New maze started");
                 levelIndex++;
+                randomizer.Randomize();
             }
             if (!endpoint)
             {

@@ -6,14 +6,13 @@ public class Randomizer : MonoBehaviour
 {
     public int[][] mazeArray;
     private int currentIndex;
-    public int mazeID;
 
-    void Randomize()
+    public void Randomize()
     {
-        currentIndex = Random.Range(0, mazeArray.Length);
+        currentIndex = Random.Range(0, (mazeArray.Length - 1));
         if (mazeArray[currentIndex][1] == 0)
         {
-            mazeID = mazeArray[currentIndex][0];
+            WayPointChecker.MazeID = mazeArray[currentIndex][0];
         }
         else
         {
