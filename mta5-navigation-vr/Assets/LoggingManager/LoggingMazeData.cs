@@ -6,6 +6,7 @@ public class LoggingMazeData : MonoBehaviour
 {
     
     private LoggingManager loggingManager;
+    private FinalFreqDire finalFreqDire;
     //private VariableHandler variableHandler;
 
     public GameObject player;
@@ -15,6 +16,7 @@ public class LoggingMazeData : MonoBehaviour
     void Start()
     {
         loggingManager = GameObject.Find("Logging").GetComponent<LoggingManager>();
+        finalFreqDire = GameObject.Find("forward").GetComponent<FinalFreqDire>();
         //variableHandler = GameObject.Find("VariableHandler").GetComponent<VariableHandler>();
     }
     
@@ -47,9 +49,9 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
         
         // Event Logger
-        loggingManager.Log(csvFileName, "DeviceButtonClick", placeholder);
-        loggingManager.Log(csvFileName, "DeviceButtonHoldTime", placeholder);
-        loggingManager.Log(csvFileName, "DeviceButtonRelease", placeholder);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDire.deviceButtonClickStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTime", placeholder);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalFreqDire.deviceButtonClickStart);
         loggingManager.Log(csvFileName, "StartPointButtonPress", placeholder);
         loggingManager.Log(csvFileName, "EndPointButtonPress", placeholder);
         
