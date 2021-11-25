@@ -16,6 +16,9 @@ public class FinalFreqDire : MonoBehaviour
     public bool startTimer;
     public InputActionReference toggleReference = null;
     public InputActionReference toggleOffReference = null;
+    public int deviceButtonClickStart;
+    public int deviceButtonClickStop;
+    
 
     //waypoint varibles
     public WayPointChecker checker;
@@ -45,7 +48,8 @@ public class FinalFreqDire : MonoBehaviour
 
     void Update()
     {
- 
+        deviceButtonClickStart = 0;
+        deviceButtonClickStop = 0;
         if (startTimer)
         {
             timer += Time.deltaTime;
@@ -100,7 +104,6 @@ public class FinalFreqDire : MonoBehaviour
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         Debug.Log("current" + currentWayPoint);
-        
     }
     
     void updateSortedArray()
@@ -138,10 +141,12 @@ public class FinalFreqDire : MonoBehaviour
     {
         Debug.Log("knaptryk");
         startTimer = true;
+        deviceButtonClickStart = 1;
     }
 
     private void ToggleOff(InputAction.CallbackContext context)
     {
         startTimer = false;
+        deviceButtonClickStop = 1;
     }
 }
