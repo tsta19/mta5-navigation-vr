@@ -20,5 +20,6 @@ public class distanceCalc : MonoBehaviour
         float distanceThisFrame = distanceVector.magnitude;
         totalDistance += distanceThisFrame;
         oldPos = transform.position;
+        Debug.Log("Distance travelled: " + totalDistance);
     }
 }
