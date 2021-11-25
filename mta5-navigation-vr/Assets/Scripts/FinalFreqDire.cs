@@ -16,8 +16,18 @@ public class FinalFreqDire : MonoBehaviour
     public bool startTimer;
     public InputActionReference toggleReference = null;
     public InputActionReference toggleOffReference = null;
-    public int deviceButtonClickStart;
-    public int deviceButtonClickStop;
+    [HideInInspector] public int deviceButtonClickStart;
+    [HideInInspector] public int deviceButtonClickStop;
+    [HideInInspector] public float deviceButtonClickTimer;
+    [HideInInspector] public bool startButtonClickTimer = false;
+
+    
+    [HideInInspector] public float deviceButtonClickTimerStart;
+    [HideInInspector] public float deviceButtonClickTimerEnd;
+    [HideInInspector] public float deviceButtonClickTimerSpent;
+    [HideInInspector] public float deviceButtonClickTimerSpentHolder;
+    [HideInInspector] public float deviceButtonClickTimerTotal;
+    
     
 
     //waypoint varibles
@@ -48,14 +58,15 @@ public class FinalFreqDire : MonoBehaviour
 
     void Update()
     {
-        deviceButtonClickStart = 0;
-        deviceButtonClickStop = 0;
+        buttonPress();
+        buttonRelease();
+
         if (startTimer)
         {
             timer += Time.deltaTime;
             if (timer >= timerLimit)
             {
-                Debug.Log("hejsa");
+                //Debug.Log("hejsa");
                 startDetection();
                 timer = 0f;
             }
@@ -117,11 +128,11 @@ public class FinalFreqDire : MonoBehaviour
             {
                 waypoint = GameObject.Find("Waypoint" + i);
                 sortedWaypoint.Add(waypoint);
-                print("LÆNGDE" + wayPoints.Length);
-                print("NAVN" + waypoint);
+                //print("LÆNGDE" + wayPoints.Length);
+                //print("NAVN" + waypoint);
             }
         }
-        print("sorted" + sortedWaypoint);
+        //print("sorted" + sortedWaypoint);
         updateCurrentWayPoint();
     }    
     
@@ -142,11 +153,44 @@ public class FinalFreqDire : MonoBehaviour
         Debug.Log("knaptryk");
         startTimer = true;
         deviceButtonClickStart = 1;
+        startButtonClickTimer = true;
     }
 
     private void ToggleOff(InputAction.CallbackContext context)
     {
         startTimer = false;
         deviceButtonClickStop = 1;
+        startButtonClickTimer = false;
+    }
+    
+    private void buttonPress()
+    {
+        if (Input.GetKeyDown("t"))
+        {
+            Debug.Log("knaptryk");
+            startTimer = true;
+            deviceButtonClickStart = 1;
+            Debug.Log("DBCSTART " + deviceButtonClickStop);
+            deviceButtonClickTimerStart = Time.time;
+            deviceButtonClickStop = 0;
+            
+        }
+    }
+
+    private void buttonRelease()
+    {
+        if (Input.GetKeyDown("y"))
+        {
+            startTimer = false;
+            deviceButtonClickStop = 1;
+            Debug.Log("DBCSTOP " + deviceButtonClickStop);
+            deviceButtonClickTimerEnd = Time.time;
+            deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
+            deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
+            deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
+            Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
+            deviceButtonClickTimerSpent = 0f;
+            deviceButtonClickStart = 0;
+        }
     }
 }

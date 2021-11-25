@@ -50,8 +50,11 @@ public class LoggingMazeData : MonoBehaviour
         
         // Event Logger
         loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDire.deviceButtonClickStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTime", placeholder);
-        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalFreqDire.deviceButtonClickStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDire.deviceButtonClickTimerStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerSpent", finalFreqDire.deviceButtonClickTimerSpentHolder);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerEnd", finalFreqDire.deviceButtonClickTimerEnd);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalFreqDire.deviceButtonClickStop);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerTotal", finalFreqDire.deviceButtonClickTimerTotal);
         loggingManager.Log(csvFileName, "StartPointButtonPress", placeholder);
         loggingManager.Log(csvFileName, "EndPointButtonPress", placeholder);
         
