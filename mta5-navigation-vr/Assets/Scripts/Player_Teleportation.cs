@@ -17,35 +17,35 @@ public class Player_Teleportation : MonoBehaviour
     
 
     // Debug Boolean
-    private bool showDebug = false;
+    private bool showDebug = true;
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 1)
+        if (WayPointChecker.MazeID == 1)
         {
             player.transform.position = teleportTarget1.transform.position;
             if (showDebug) { print("You have collided with the 1. teleporter"); }
         }
         
-        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 2)
+        if (WayPointChecker.MazeID == 2)
         {
             player.transform.position = teleportTarget2.transform.position;
             if (showDebug) { print("You have collided with the 2. teleporter"); }
         }
         
-        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 3)
+        if (WayPointChecker.MazeID == 3)
         {
             player.transform.position = teleportTarget3.transform.position;
             if (showDebug) { print("You have collided with the 3. teleporter"); }
         }
         
-        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 4)
+        if (WayPointChecker.MazeID == 4)
         {
             player.transform.position = teleportTarget4.transform.position;
             if (showDebug) { print("You have collided with the 4. teleporter"); }
         }
         
-        if (col.gameObject.CompareTag("Player") && WayPointChecker.MazeID == 5)
+        if (WayPointChecker.MazeID == 5)
         {
             player.transform.position = teleportTarget5.transform.position;
             if (showDebug) { print("You have collided with the 5. teleporter"); }

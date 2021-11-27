@@ -27,8 +27,9 @@ public class FinalFreqDire : MonoBehaviour
     [HideInInspector] public float deviceButtonClickTimerSpent;
     [HideInInspector] public float deviceButtonClickTimerSpentHolder;
     [HideInInspector] public float deviceButtonClickTimerTotal;
-    
-    
+
+    [HideInInspector] public int toggleOnID;
+    [HideInInspector] public int toggleOffID;
 
     //waypoint varibles
     public WayPointChecker checker;
@@ -88,10 +89,10 @@ public class FinalFreqDire : MonoBehaviour
 
         //beregner vinkel mellem retningsvektor og nav-device's frontvektor
         angle = Vector3.SignedAngle(_directionVector, transform.forward, Vector3.forward);
-        Debug.Log("angle: " + angle);
+        //Debug.Log("angle: " + angle);
         //Scaler level efter grader (op til vinkelret)
         level = Mathf.Abs(Mathf.CeilToInt(angle / 18));
-        Debug.Log("level: " + level);
+        //Debug.Log("level: " + level);
         if (Mathf.Abs(holder) != Mathf.Abs(angle))
         {
             if (level < 5)
@@ -150,24 +151,37 @@ public class FinalFreqDire : MonoBehaviour
 
     private void Toggle(InputAction.CallbackContext context)
     {
-        Debug.Log("knaptryk");
+        toggleOnID += 1;
+        Debug.Log("ToggleOn" + toggleOnID);
         startTimer = true;
         deviceButtonClickStart = 1;
         startButtonClickTimer = true;
+        deviceButtonClickTimerStart = Time.time;
+        deviceButtonClickStop = 0;
     }
 
     private void ToggleOff(InputAction.CallbackContext context)
     {
+        toggleOffID += 1;
+        Debug.Log("ToggleOff" + toggleOffID);
         startTimer = false;
         deviceButtonClickStop = 1;
         startButtonClickTimer = false;
+        deviceButtonClickTimerEnd = Time.time;
+        deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
+        deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
+        deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
+        Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
+        deviceButtonClickTimerSpent = 0f;
+        deviceButtonClickStart = 0;
     }
     
     private void buttonPress()
     {
         if (Input.GetKeyDown("t"))
         {
-            Debug.Log("knaptryk");
+            toggleOnID += 1;
+            Debug.Log("ToggleOn" + toggleOnID);
             startTimer = true;
             deviceButtonClickStart = 1;
             Debug.Log("DBCSTART " + deviceButtonClickStop);
@@ -181,6 +195,8 @@ public class FinalFreqDire : MonoBehaviour
     {
         if (Input.GetKeyDown("y"))
         {
+            toggleOffID += 1;
+            Debug.Log("ToggleOff" + toggleOffID);
             startTimer = false;
             deviceButtonClickStop = 1;
             Debug.Log("DBCSTOP " + deviceButtonClickStop);

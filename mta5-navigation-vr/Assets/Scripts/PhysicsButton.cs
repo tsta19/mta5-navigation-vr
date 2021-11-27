@@ -22,10 +22,10 @@ public class PhysicsButton : MonoBehaviour
 
     // Vi bruger physicsButton til enten at starte en timer eller skifte level.
     public bool endpoint;
-    public int levelIndex;
+    public static int levelIndex;
     
     // Timers til at måle tid
-    public float[] timers;
+    public static float[] timers;
 
     //Laver nogle unity events, der bliver triggered når knappen bliver trykket.
     public UnityEvent onPressed, onReleased;
@@ -36,6 +36,7 @@ public class PhysicsButton : MonoBehaviour
         //start positionen er sat til knappens lokale position, da det er knappens position vi er ude efter, og ikke en position kontra en anden position.
         startPos = transform.localPosition;
         joint = GetComponent<ConfigurableJoint>();
+        
         randomizer = GetComponent<Randomizer>();
         timers = new float[5];
     }
@@ -54,8 +55,8 @@ public class PhysicsButton : MonoBehaviour
                 startButtonPressd = false;
                 Debug.Log("New maze started");
                 levelIndex++;
-                Randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
-                Debug.Log("mazeaarray" + Randomizer.mazeArray);
+                randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
+                Debug.Log("mazeaarray" + randomizer.mazeArray);
                 randomizer.Randomize();
             }
             if (!endpoint)
@@ -86,6 +87,8 @@ public class PhysicsButton : MonoBehaviour
     private void Pressed()
     {
         isPressed = true;
+        
+        
         onPressed.Invoke();
         Debug.Log("Pressed");
     }
