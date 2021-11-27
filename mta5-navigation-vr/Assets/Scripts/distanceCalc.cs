@@ -6,7 +6,7 @@ public class distanceCalc : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector3 oldPos;
-    float totalDistance;
+    public static float totalDistance;
 
     void Start()
     {
