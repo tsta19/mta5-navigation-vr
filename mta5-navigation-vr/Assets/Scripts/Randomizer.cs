@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Randomizer : MonoBehaviour
 {
-    public int[][] mazeArray;
+    public static int[][] mazeArray;
     private int currentIndex;
 
     public void Randomize()
