@@ -13,8 +13,8 @@ public class FinalTempDis : MonoBehaviour
     [SerializeField] private GameObject currentHit;
     [SerializeField] private Vector3 objectiveCollision = Vector3.zero;
 
-    [SerializeField] private Transform navDevicePointer;
-    [SerializeField] private Transform objectivePos;
+    private Transform navDevicePointer;
+    private Transform objectivePos;
 
     [HideInInspector] public int deviceButtonClickStart;
     [HideInInspector] public int deviceButtonClickStop;
@@ -62,10 +62,10 @@ public class FinalTempDis : MonoBehaviour
     //Start function whitch initializes some starting variables.
     void Start()
     {
-        connectLines(true);
-        distanceFromPlayerToObjective();
+        //connectLines(true);
+        //distanceFromPlayerToObjective();
         audioSource.pitch = pitchStart;
-        Initialization();
+        //Initialization();
         Debug.Log("startdisfromobj: " + playerDistFromObj);
         startDis = playerDistFromObj;
         
@@ -82,19 +82,22 @@ public class FinalTempDis : MonoBehaviour
         }
         print("sorted" + sortedWaypoint);
         updateCurrentWayPoint();
+        currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         
     }
 
     void Update()
     {
+        
+        
         // If the distance from the endgoal object changes(it moves) run this code.
-        if (holder != playerDistFromObj)
+        if (holder != currentDist)
         {
             // If statement making sure pitch stays between the stated values.
             if (audioSource.pitch > 0.507 && audioSource.pitch < 2.005)
             {
                 // Maps the pitch values to the distance.
-                normalizedValue = Mathf.InverseLerp(startDis, 0, playerDistFromObj);
+                normalizedValue = Mathf.InverseLerp(startDis, 0, currentDist);
                 pitchMap = Mathf.Lerp(0.508f, 2.004f, normalizedValue);
                 // Saves the into the variable witch holds the current pitch.
                 pitchNow = pitchMap;
@@ -104,7 +107,7 @@ public class FinalTempDis : MonoBehaviour
                 audioSource.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / audioSource.pitch);
                 Debug.Log("Pitch: " + audioSource.pitch);
                 // Saves the current player distance into the holder variable to show the player is not moving again.
-                holder = playerDistFromObj;
+                holder = currentDist;
             }
             else
             {
@@ -121,12 +124,15 @@ public class FinalTempDis : MonoBehaviour
 
 
         }
+        
+        
         // Thomas kode til distance.
-        connectLines(true);
-        distanceFromPlayerToObjective();
+        //connectLines(true);
+        //distanceFromPlayerToObjective();
 
     }
 
+    /* 
     // Thomas kode.
     void connectLines(bool state)
     {
@@ -164,6 +170,8 @@ public class FinalTempDis : MonoBehaviour
             }
         }
     }
+    
+    */
 
     private void Awake()
     {

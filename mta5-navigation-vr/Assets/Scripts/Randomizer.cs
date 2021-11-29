@@ -13,6 +13,7 @@ public class Randomizer : MonoBehaviour
         if (mazeArray[currentIndex][1] == 0)
         {
             WayPointChecker.MazeID = mazeArray[currentIndex][0];
+            Debug.Log("MazeID: " + WayPointChecker.MazeID);
         }
         else
         {
