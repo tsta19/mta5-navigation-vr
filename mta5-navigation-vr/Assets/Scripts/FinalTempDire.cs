@@ -15,7 +15,7 @@ public class FinalTempDire : MonoBehaviour
     public float pitchMap;
     public InputActionReference toggleReference = null;
     public InputActionReference toggleOffReference = null;
-
+    private bool fyrDen;
     //Logging
     [HideInInspector] public int deviceButtonClickStart;
     [HideInInspector] public int deviceButtonClickStop;
@@ -71,7 +71,11 @@ public class FinalTempDire : MonoBehaviour
     {
 
         startDetection();
-        
+        if (fyrDen)
+        {
+            sonar1.Play();
+            fyrDen = false;
+        }
         if (checker.imActive == false && arrayIndex < wayPoints.Length)
         {
             updateCurrentWayPoint();
@@ -99,6 +103,7 @@ public class FinalTempDire : MonoBehaviour
             print("angle: " + Mathf.Abs(angle));
             holder = angle;
         }
+        
     }
     
     void updateCurrentWayPoint()
@@ -132,6 +137,9 @@ public class FinalTempDire : MonoBehaviour
         startButtonClickTimer = true;
         deviceButtonClickTimerStart = Time.time;
         deviceButtonClickStop = 0;
+        fyrDen = true;
+        sonar1.loop = true;
+        
     }
 
     private void ToggleOff(InputAction.CallbackContext context)
@@ -147,6 +155,9 @@ public class FinalTempDire : MonoBehaviour
         Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
         deviceButtonClickTimerSpent = 0f;
         deviceButtonClickStart = 0;
+        fyrDen = false;
+        sonar1.loop = false;
+        
     }
 
 

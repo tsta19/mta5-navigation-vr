@@ -28,11 +28,14 @@ public class PhysicsButton : MonoBehaviour
     public static float[] timers;
 
     // Allowed maze time
-    private bool timerStart;
-    public float exitTimer;
+    public static bool timerStart;
+    public static float exitTimer;
 
     //Laver nogle unity events, der bliver triggered når knappen bliver trykket.
     public UnityEvent onPressed, onReleased;
+
+    public GameObject maze;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -58,6 +61,7 @@ public class PhysicsButton : MonoBehaviour
                 endButtonPressd = true;
                 startButtonPressd = false;
                 timerStart = false;
+                exitTimer = 0;
                 //Debug.Log("New maze started");
                 //randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
                 //Debug.Log("mazeaarray" + randomizer.mazeArray);
@@ -94,16 +98,11 @@ public class PhysicsButton : MonoBehaviour
                 startButtonPressd = true;
                 endButtonPressd = false;
                 timerStart = true;
-                exitTimer = 0;
+                
             }
             
         }
-        if (timerStart) {
-            exitTimer = Time.deltaTime;
-            if (exitStart > 300) {
-                forceTeleport();
-            }
-        }
+        
     }
 
     //Ser om distance mellem knappens start position og knappens nuværende position er stor nok til at gå ud over dødszonen
@@ -132,13 +131,5 @@ public class PhysicsButton : MonoBehaviour
         Debug.Log("Released");
     }
 
-    private void forceTeleport() {
-        GameObject randomizer = GameObject.Find("randomizerObject");
-        maze = randomizer.GetComponent<Randomizer>().getMaze();
-        Transform child = maze.transform.Find("Teleporter").transform.Find("TeleportTarget");
-        player.transform.position = child.transform.position;
-        device = GameObject.Find("GrabInteractable");
-        device.transform.position = child.transform.position;
-        Debug.Log("child: " + child);
-    }
+    
 }

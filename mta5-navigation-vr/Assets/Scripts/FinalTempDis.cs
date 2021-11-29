@@ -9,9 +9,6 @@ public class FinalTempDis : MonoBehaviour
     // Instantiates a lot of variables.
 
     private bool fyrDen;
-    [SerializeField] private LayerMask wallMask;
-    [SerializeField] private GameObject currentHit;
-    [SerializeField] private Vector3 objectiveCollision = Vector3.zero;
 
     private Transform navDevicePointer;
     private Transform objectivePos;
@@ -33,7 +30,6 @@ public class FinalTempDis : MonoBehaviour
 
     //public TextMeshPro textTimer;
     private LineRenderer lineRenderer;
-    public float playerDistFromObj;
     public AudioSource audioSource;
     private float pitchStart = 0.508f;
     private float pitchNow;
@@ -141,48 +137,7 @@ public class FinalTempDis : MonoBehaviour
         //distanceFromPlayerToObjective();
 
     }
-
-    /* 
-    // Thomas kode.
-    void connectLines(bool state)
-    {
-        if (state)
-        {
-            lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.SetPosition(0, navDevicePointer.transform.position);
-            lineRenderer.SetPosition(1, objectivePos.transform.position);
-            playerDistFromObj = Vector3.Distance(navDevicePointer.transform.position, objectivePos.transform.position);
-        }
-        else
-        {
-            return;
-        }
-    }
-
-    private void Initialization()
-    {
-        Debug.Log(this.gameObject.GetComponent<MonoBehaviour>() + " Script Started");
-    }
-
-    private void distanceFromPlayerToObjective()
-    {
-        var ray = new Ray(navDevicePointer.position, navDevicePointer.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100, ~wallMask))
-        {
-            currentHit = hit.transform.gameObject;
-            objectiveCollision = hit.point;
-
-            if (currentHit.CompareTag(objectiveTag))
-            {
-                // If objective is hit, code goes here
-            }
-        }
-    }
     
-    */
-
     private void Awake()
     {
         toggleReference.action.started += Toggle;
@@ -206,7 +161,7 @@ public class FinalTempDis : MonoBehaviour
         startButtonClickTimer = true;
         deviceButtonClickTimerStart = Time.time;
         deviceButtonClickStop = 0;
-
+        print("arrayindex: " + arrayIndex);
     }
 
     private void ToggleOff(InputAction.CallbackContext context)

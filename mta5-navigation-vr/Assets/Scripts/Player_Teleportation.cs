@@ -12,6 +12,7 @@ public class Player_Teleportation : MonoBehaviour
     public GameObject player;
     public GameObject device;
 
+    
     // Teleport Reference
     public Transform teleportTarget1;
     public Transform teleportTarget2;
@@ -25,13 +26,7 @@ public class Player_Teleportation : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        GameObject randomizer = GameObject.Find("randomizerObject");
-        maze = randomizer.GetComponent<Randomizer>().getMaze();
-        Transform child = maze.transform.Find("Teleporter").transform.Find("TeleportTarget");
-        player.transform.position = child.transform.position;
-        device = GameObject.Find("GrabInteractable");
-        device.transform.position = child.transform.position;
-        Debug.Log("child: " + child);
+        teleport();
     
         /*if (WayPointChecker.MazeID == 0)
         {
@@ -57,5 +52,36 @@ public class Player_Teleportation : MonoBehaviour
             player.transform.position = maze.teleportTarget.transform.position;
             if (showDebug) { print("You have collided with the 4. teleporter"); }
         }*/
+    }
+
+    private void Update()
+    {
+        if (PhysicsButton.timerStart) {
+            PhysicsButton.exitTimer += Time.deltaTime;
+            print("DELTATIME: " + Time.deltaTime);
+            print("TIMERERENEN: " + PhysicsButton.exitTimer);
+            if (PhysicsButton.exitTimer > 1000) {
+                forceTeleport();
+                PhysicsButton.exitTimer = 0;
+                PhysicsButton.timerStart = false;
+            }
+        }
+    }
+
+    void teleport()
+    {
+        GameObject randomizer = GameObject.Find("randomizerObject");
+        maze = randomizer.GetComponent<Randomizer>().getMaze();
+        Transform child = maze.transform.Find("Teleporter").transform.Find("TeleportTarget");
+        print("childTP: " + child);
+        player.transform.position = child.transform.position;
+        device = GameObject.Find("GrabInteractable");
+        device.transform.position = child.transform.position;
+        Debug.Log("child: " + child);
+    }
+    void forceTeleport()
+     {
+        WayPointChecker.MazeID++;
+        teleport();
     }
 }

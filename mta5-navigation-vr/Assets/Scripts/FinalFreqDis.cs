@@ -52,16 +52,8 @@ public class FinalFreqDis : MonoBehaviour
         startTimer = true;
         timerLimit = 1;
 
-        
-        //Finder alle waypoints og sorter dem
-        wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
-        sortedWaypoint = new List<GameObject>();
-        for (int i = 1; i <= wayPoints.Length; i++)
-        {
-            waypoint = GameObject.Find("Waypoint" + i);
-            sortedWaypoint.Add(waypoint);
-        }
-        updateCurrentWayPoint();
+
+        updateSortedArray();
         currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         distanceHolder = currentDist;
     }
@@ -138,7 +130,24 @@ public class FinalFreqDis : MonoBehaviour
         toggleReference.action.started += Toggle;
         toggleOffReference.action.started += ToggleOff;
     }
-
+    void updateSortedArray()
+    {
+        //Find all waypoints in the 
+        wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
+        sortedWaypoint = new List<GameObject>();
+        for (int i = 1; i <= wayPoints.Length; i++)
+        {
+            if (WayPointChecker.MazeID == WayPointChecker.MazeTag)
+            {
+                waypoint = GameObject.Find("Waypoint" + i);
+                sortedWaypoint.Add(waypoint);
+                //print("LÆNGDE" + wayPoints.Length);
+                //print("NAVN" + waypoint);
+            }
+        }
+        //print("sorted" + sortedWaypoint);
+        updateCurrentWayPoint();
+    }    
     private void OnDestroy()
     {
         toggleReference.action.started -= Toggle;
@@ -155,6 +164,7 @@ public class FinalFreqDis : MonoBehaviour
     {
         startTimer = false;
     }
+    
 }
 
 
