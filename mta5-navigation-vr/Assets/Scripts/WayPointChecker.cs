@@ -9,11 +9,14 @@ public class WayPointChecker : MonoBehaviour
     public int mazeChecker;
     public bool imActive;
 
-
+    void start(){
+        audioSources = GetComponents<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {
+            magic.Play();
             imActive = false;
             Debug.Log("HE GOT ME!");
             //confirmationsound
