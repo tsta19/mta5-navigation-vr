@@ -12,7 +12,7 @@ public class Randomizer : MonoBehaviour
     public int[] getLine(int n) {
         int[] array = new int[n];
         int k = (modulusInt - 1) % 4;
-
+        
         for(int i = 0; i < n; i++)
         {
             k++;
@@ -26,7 +26,7 @@ public class Randomizer : MonoBehaviour
 
     public void updateMaze() {
         WayPointChecker.MazeID++;
-        int[] array = getLine(mazeAmount);
+        //int[] array = getLine(mazeAmount);
     }
 
     public GameObject getMaze() {

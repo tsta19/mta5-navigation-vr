@@ -56,7 +56,9 @@ public class PhysicsButton : MonoBehaviour
                 //Debug.Log("New maze started");
                 //randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
                 //Debug.Log("mazeaarray" + randomizer.mazeArray);
-                randomizer.updateMaze();
+                GameObject newMaze = GameObject.Find("randomizerObject");
+                newMaze.GetComponent<Randomizer>().updateMaze();
+                
             }
             if (!endpoint)
             {

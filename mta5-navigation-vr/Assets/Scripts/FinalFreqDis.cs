@@ -37,7 +37,7 @@ public class FinalFreqDis : MonoBehaviour
     public WayPointChecker checker;
     public GameObject[] wayPoints;
     private GameObject waypoint;
-    public GameObject currentWayPoint;
+    private GameObject currentWayPoint;
     private int arrayIndex = 0;
     private List<GameObject> sortedWaypoint;
     private float savedDist;
@@ -83,8 +83,12 @@ public class FinalFreqDis : MonoBehaviour
         //Ser om waypoint skal opdateres
         if (checker.imActive == false && arrayIndex < wayPoints.Length)
         {
-            updateCurrentWayPoint();
             distanceHolder = currentDist;
+            updateCurrentWayPoint();
+            print("new waypoint assigned: " + currentWayPoint);
+            print("Waypoint array: " + sortedWaypoint);
+            print("Waypoint array length: " + sortedWaypoint.Count);
+            
         }
         currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
        
