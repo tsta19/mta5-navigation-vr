@@ -18,6 +18,20 @@ public class FinalFreqDis : MonoBehaviour
     private float distanceScaled;
     public InputActionReference toggleReference = null;
     public InputActionReference toggleOffReference = null;
+    [HideInInspector] public int deviceButtonClickStart;
+    [HideInInspector] public int deviceButtonClickStop;
+    [HideInInspector] public float deviceButtonClickTimer;
+    [HideInInspector] public bool startButtonClickTimer = false;
+
+    
+    [HideInInspector] public float deviceButtonClickTimerStart;
+    [HideInInspector] public float deviceButtonClickTimerEnd;
+    [HideInInspector] public float deviceButtonClickTimerSpent;
+    [HideInInspector] public float deviceButtonClickTimerSpentHolder;
+    [HideInInspector] public float deviceButtonClickTimerTotal;
+
+    [HideInInspector] public int toggleOnID;
+    [HideInInspector] public int toggleOffID;
 
     //waypoint varibles
     public WayPointChecker checker;
