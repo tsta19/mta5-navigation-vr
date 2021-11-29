@@ -6,6 +6,29 @@ public class Randomizer : MonoBehaviour
 {
     public int[][] mazeArray;
     private int currentIndex;
+    public int n = 4;
+
+    public int  modulusInt = 0;
+
+    public int[] getLine(int n) {
+        int array = new int[n];
+        int k = (modulusInt - 1) % 4;
+
+        for(int i = 0; i < n; i++)
+        {
+            k++;
+            if (k > n) {
+                k = 1;
+            }
+            array[i] = k;
+        }
+        return array;
+    }
+
+    public int getMaze(int index) {
+        int[] array = getLine(n);
+        return array[index++];
+    }
 
     public void Randomize()
     {
