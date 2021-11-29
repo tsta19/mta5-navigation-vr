@@ -6,6 +6,7 @@ public class WayPointChecker : MonoBehaviour
 {
     public static int MazeID;
     public static int MazeTag;
+    public int mazeChecker;
     public bool imActive;
 
 

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Player_Teleportation : MonoBehaviour
 {
     // Get mazeID
-    int mazeID;
+    public GameObject maze;
+
     // Player Reference
     public GameObject player;
 
@@ -23,26 +24,27 @@ public class Player_Teleportation : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        mazeID = WayPointChecker.MazeID;
-        if (mazeID == 0)
+        GameObject randomizer = GameObject.Find("randomizerObject");
+        maze = randomizer.GetComponent<Randomizer>().getMaze();
+        if (WayPointChecker.MazeID == 0)
         {
             player.transform.position = teleportTarget1.transform.position;
             if (showDebug) { print("You have collided with the 1. teleporter"); }
         }
         
-        if (mazeID == 1)
+        if (WayPointChecker.MazeID == 1)
         {
             player.transform.position = teleportTarget2.transform.position;
             if (showDebug) { print("You have collided with the 2. teleporter"); }
         }
         
-        if (mazeID == 2)
+        if (WayPointChecker.MazeID == 2)
         {
             player.transform.position = teleportTarget3.transform.position;
             if (showDebug) { print("You have collided with the 3. teleporter"); }
         }
         
-        if (mazeID == 3)
+        if (WayPointChecker.MazeID == 3)
         {
             player.transform.position = teleportTarget4.transform.position;
             if (showDebug) { print("You have collided with the 4. teleporter"); }
