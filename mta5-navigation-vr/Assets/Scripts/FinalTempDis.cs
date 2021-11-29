@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class FinalTempDis : MonoBehaviour
 {
     // Instantiates a lot of variables.
-    [SerializeField] private string objectiveTag = "Objective";
 
+    private bool fyrDen;
     [SerializeField] private LayerMask wallMask;
     [SerializeField] private GameObject currentHit;
     [SerializeField] private Vector3 objectiveCollision = Vector3.zero;
@@ -66,8 +66,8 @@ public class FinalTempDis : MonoBehaviour
         //distanceFromPlayerToObjective();
         audioSource.pitch = pitchStart;
         //Initialization();
-        Debug.Log("startdisfromobj: " + playerDistFromObj);
-        startDis = playerDistFromObj;
+       
+        
         
         //Find all waypoints in the 
         wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
@@ -76,20 +76,22 @@ public class FinalTempDis : MonoBehaviour
         {
             waypoint = GameObject.Find("Waypoint" + i);
             sortedWaypoint.Add(waypoint);
-            print("LÆNGDE" + wayPoints.Length);
-            print("NAVN" + waypoint);
+            //print("LÆNGDE" + wayPoints.Length);
+            //print("NAVN" + waypoint);
             
         }
         print("sorted" + sortedWaypoint);
         updateCurrentWayPoint();
+       
         currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
-        
+        startDis = currentDist;
+        Debug.Log("startdisfromobj: " + currentDist);
     }
 
     void Update()
     {
         
-        
+        print("currentdist1: " + currentDist);
         // If the distance from the endgoal object changes(it moves) run this code.
         if (holder != currentDist)
         {
@@ -99,8 +101,10 @@ public class FinalTempDis : MonoBehaviour
                 // Maps the pitch values to the distance.
                 normalizedValue = Mathf.InverseLerp(startDis, 0, currentDist);
                 pitchMap = Mathf.Lerp(0.508f, 2.004f, normalizedValue);
+                Debug.Log("currentdist: " + currentDist);
                 // Saves the into the variable witch holds the current pitch.
                 pitchNow = pitchMap;
+                Debug.Log("Pitchmap: " + pitchMap);
                 audioSource.pitch = pitchNow;
                 // Decreases or increases the pitch to counterbalance the increase/decrease audiosource.Pitch does so that
                 // we only end up with the tempo increase.
@@ -118,14 +122,20 @@ public class FinalTempDis : MonoBehaviour
             if (checker.imActive == false && arrayIndex < wayPoints.Length)
             {
                 updateCurrentWayPoint();
+                
             }
-
-            currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
-
+           
 
         }
-        
-        
+
+        if (fyrDen)
+        {
+            audioSource.Play();
+            fyrDen = false;
+        }
+        print("picth: " + audioSource.pitch);
+        print("currentdist2: " + currentDist);
+        currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         // Thomas kode til distance.
         //connectLines(true);
         //distanceFromPlayerToObjective();
@@ -190,7 +200,7 @@ public class FinalTempDis : MonoBehaviour
         toggleOnID += 1;
         audioSource.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / audioSource.pitch);
         timerStart = Time.time;
-        audioSource.Play();
+        fyrDen = true;
         audioSource.loop = true;
         deviceButtonClickStart = 1;
         startButtonClickTimer = true;

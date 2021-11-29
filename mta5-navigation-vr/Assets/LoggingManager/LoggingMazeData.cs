@@ -148,6 +148,7 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
         loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
         
+        /*
         // Event Logger
         loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDis.deviceButtonClickStart);
         loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDis.deviceButtonClickTimerStart);
@@ -159,6 +160,8 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "EndPointButtonPress", PhysicsButton.endButtonPressd);
         loggingManager.Log(csvFileName, "ToggleOnID", finalFreqDis.toggleOnID);
         loggingManager.Log(csvFileName, "ToggleOffID", finalFreqDis.toggleOffID);
+        
+        */
         
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);

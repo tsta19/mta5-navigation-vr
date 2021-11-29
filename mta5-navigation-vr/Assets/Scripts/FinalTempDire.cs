@@ -46,13 +46,14 @@ public class FinalTempDire : MonoBehaviour
     // In the start function we call the startDetection method to setup the starting angle and holder.
     void Start()
     {
-        startDetection();
+        
         holder = Mathf.Abs(angle);
         startAngle = angle;     
         
         //Find all waypoints in the 
         wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
         sortedWaypoint = new List<GameObject>();
+        print("sortedWP: "+sortedWaypoint);
         for (int i = 1; i <= wayPoints.Length; i++)
         {
             waypoint = GameObject.Find("Waypoint" + i);
@@ -87,13 +88,15 @@ public class FinalTempDire : MonoBehaviour
     {
         _directionVector = currentWayPoint.transform.position - transform.position;
         angle = Vector3.SignedAngle(_directionVector, transform.forward, Vector3.forward);
-
+        
         if (Mathf.Abs(holder) != Mathf.Abs(angle))
         {
-            normalizedValue = Mathf.InverseLerp(startAngle, 0, angle);
+            normalizedValue = Mathf.InverseLerp(180, 0, Mathf.Abs(angle));
             pitchMap = Mathf.Lerp(0.508f, 2.004f, normalizedValue);
             sonar1.pitch = pitchMap;
             sonar1.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / sonar1.pitch);
+            print("pitch: " + pitchMap);
+            print("angle: " + Mathf.Abs(angle));
             holder = angle;
         }
     }

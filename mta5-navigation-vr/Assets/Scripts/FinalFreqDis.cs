@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class FinalFreqDis : MonoBehaviour
 {
-    public Transform objective;
+    
     private int level;
     private float holder;
     public AudioSource[] audioSources;
@@ -48,13 +48,11 @@ public class FinalFreqDis : MonoBehaviour
     {
         //Henter audiokilder vi har smidt på objektet i rœkkefølge: lav Hz -> høj Hz
         audioSources = GetComponents<AudioSource>();
-        holder = distance;
+        
         startTimer = true;
         timerLimit = 1;
 
-        //Her skal "objective" reprœsentere waypointet, og nok ned i Update med noget if statement der styrer hvilket waypoint vi skal mod
-        distanceHolder = Vector3.Distance(transform.position, objective.transform.position);
-
+        
         //Finder alle waypoints og sorter dem
         wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
         sortedWaypoint = new List<GameObject>();
@@ -64,6 +62,8 @@ public class FinalFreqDis : MonoBehaviour
             sortedWaypoint.Add(waypoint);
         }
         updateCurrentWayPoint();
+        currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
+        distanceHolder = currentDist;
     }
 
 
@@ -75,7 +75,7 @@ public class FinalFreqDis : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= timerLimit)
             {
-                startDistanceDetection(transform, objective.transform);
+                startDistanceDetection();
                 timer = 0f;
             }
         }
@@ -84,20 +84,22 @@ public class FinalFreqDis : MonoBehaviour
         if (checker.imActive == false && arrayIndex < wayPoints.Length)
         {
             updateCurrentWayPoint();
+            distanceHolder = currentDist;
         }
         currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
-        Debug.Log(1 - currentDist / savedDist);
+       
     }
 
-    void startDistanceDetection(Transform navdevice, Transform objectives)
+    void startDistanceDetection()
     {
         // Vi beregner nuvœrende afstand fra nav-device til waypoint og skalerer ift. den fulde afstand fra os til waypoint
-        distance = Vector3.Distance(navdevice.position, currentWayPoint.transform.position);
+        distance = Vector3.Distance(transform.position, currentWayPoint.transform.position);
         distanceScaled = 1 - (distance / distanceHolder);
 
         //Vi har 5 levels og laver procentvis fremgang for hver 20% tœttere vi kommer på waypoint (100/5=20)
-        level = Mathf.CeilToInt((distanceScaled * 100f) / 20f);
-
+        level = Mathf.CeilToInt((100f - distanceScaled * 100f) / 20f);
+        print("level: " + level);
+        print("distance: " + distance);
         if (holder != distance) //Vi gider ikke lave noget når der ikke er nogen aktivitet alligevel
         {
             if (level < 5)
