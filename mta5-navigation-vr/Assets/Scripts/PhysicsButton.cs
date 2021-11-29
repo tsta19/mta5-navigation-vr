@@ -98,8 +98,11 @@ public class PhysicsButton : MonoBehaviour
             }
             
         }
-        if (exitStart > 300) {
-            forceTeleport();
+        if (timerStart) {
+            exitTimer = Time.deltaTime;
+            if (exitStart > 300) {
+                forceTeleport();
+            }
         }
     }
 
