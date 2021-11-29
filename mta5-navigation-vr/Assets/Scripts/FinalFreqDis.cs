@@ -137,7 +137,7 @@ public class FinalFreqDis : MonoBehaviour
         sortedWaypoint = new List<GameObject>();
         for (int i = 1; i <= wayPoints.Length; i++)
         {
-            if (WayPointChecker.MazeID == WayPointChecker.MazeTag)
+            if (WayPointChecker.MazeID == sortedWaypoint[i-1].GetComponent<WayPointChecker>().mazeChecker)
             {
                 waypoint = GameObject.Find("Waypoint" + i);
                 sortedWaypoint.Add(waypoint);

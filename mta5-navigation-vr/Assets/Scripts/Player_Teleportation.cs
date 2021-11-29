@@ -60,7 +60,7 @@ public class Player_Teleportation : MonoBehaviour
             PhysicsButton.exitTimer += Time.deltaTime;
             print("DELTATIME: " + Time.deltaTime);
             print("TIMERERENEN: " + PhysicsButton.exitTimer);
-            if (PhysicsButton.exitTimer > 1000) {
+            if (PhysicsButton.exitTimer > 10000) {
                 forceTeleport();
                 PhysicsButton.exitTimer = 0;
                 PhysicsButton.timerStart = false;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Randomizer : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Randomizer : MonoBehaviour
     public int  modulusInt = 0;
     public static int levelIndex = 0;
     public int mazeAmount;
+    public static int idfk = 0;
 
     public int[] getLine(int n) {
         int[] array = new int[n];
@@ -25,13 +27,27 @@ public class Randomizer : MonoBehaviour
     }
 
     public void updateMaze() {
-        WayPointChecker.MazeID++;
+        int[] array = getLine(mazeAmount);
+        
+        print("oldMAZEID: " + array[idfk]);
+        WayPointChecker.MazeID = array[idfk];
+        idfk++;
+        print("newMAZEID: " + array[idfk]);
+        for (int i = 0; i < array.Length; i++)
+        {
+            print("sokakok" + array[i]);
+        }
+        print("array:" + array);
+        
+
         //int[] array = getLine(mazeAmount);
     }
 
     public GameObject getMaze() {
         int[] array = getLine(mazeAmount);
-        int mazeIndex = array[WayPointChecker.MazeID-1];
+        int mazeIndex = array[idfk-1];
+        print("mazearray: " + array);
+        print("mazeindex: " + mazeIndex);
         return mazes[mazeIndex - 1];
     }
 
