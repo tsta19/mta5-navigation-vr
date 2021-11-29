@@ -53,11 +53,10 @@ public class PhysicsButton : MonoBehaviour
                 Debug.Log("TIME: " + timers[levelIndex]);
                 endButtonPressd = true;
                 startButtonPressd = false;
-                Debug.Log("New maze started");
-                levelIndex++;
-                randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
-                Debug.Log("mazeaarray" + randomizer.mazeArray);
-                randomizer.Randomize();
+                //Debug.Log("New maze started");
+                //randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
+                //Debug.Log("mazeaarray" + randomizer.mazeArray);
+                randomizer.updateMaze();
             }
             if (!endpoint)
             {

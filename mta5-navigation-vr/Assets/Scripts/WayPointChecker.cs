@@ -8,6 +8,8 @@ public class WayPointChecker : MonoBehaviour
     public static int MazeTag;
     public bool imActive;
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {

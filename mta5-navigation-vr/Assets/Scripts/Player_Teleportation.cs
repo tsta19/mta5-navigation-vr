@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Player_Teleportation : MonoBehaviour
 {
+    // Get mazeID
+    int mazeID;
     // Player Reference
     public GameObject player;
 
@@ -21,34 +23,29 @@ public class Player_Teleportation : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (WayPointChecker.MazeID == 1)
+        mazeID = WayPointChecker.MazeID;
+        if (mazeID == 0)
         {
             player.transform.position = teleportTarget1.transform.position;
             if (showDebug) { print("You have collided with the 1. teleporter"); }
         }
         
-        if (WayPointChecker.MazeID == 2)
+        if (mazeID == 1)
         {
             player.transform.position = teleportTarget2.transform.position;
             if (showDebug) { print("You have collided with the 2. teleporter"); }
         }
         
-        if (WayPointChecker.MazeID == 3)
+        if (mazeID == 2)
         {
             player.transform.position = teleportTarget3.transform.position;
             if (showDebug) { print("You have collided with the 3. teleporter"); }
         }
         
-        if (WayPointChecker.MazeID == 4)
+        if (mazeID == 3)
         {
             player.transform.position = teleportTarget4.transform.position;
             if (showDebug) { print("You have collided with the 4. teleporter"); }
-        }
-        
-        if (WayPointChecker.MazeID == 5)
-        {
-            player.transform.position = teleportTarget5.transform.position;
-            if (showDebug) { print("You have collided with the 5. teleporter"); }
         }
     }
 }
