@@ -12,7 +12,8 @@ public class WayPointChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "Player" && imActive) {
+            
             audioSources = GetComponent<AudioSource>();
             audioSources.Play();
             imActive = false;
