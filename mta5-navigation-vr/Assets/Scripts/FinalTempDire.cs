@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class FinalTempDire : MonoBehaviour
 {
@@ -12,7 +13,25 @@ public class FinalTempDire : MonoBehaviour
     private float startAngle;
     private float normalizedValue;
     public float pitchMap;
-    
+    public InputActionReference toggleReference = null;
+    public InputActionReference toggleOffReference = null;
+
+    //Logging
+    [HideInInspector] public int deviceButtonClickStart;
+    [HideInInspector] public int deviceButtonClickStop;
+    [HideInInspector] public float deviceButtonClickTimer;
+    [HideInInspector] public bool startButtonClickTimer = false;
+
+
+    [HideInInspector] public float deviceButtonClickTimerStart;
+    [HideInInspector] public float deviceButtonClickTimerEnd;
+    [HideInInspector] public float deviceButtonClickTimerSpent;
+    [HideInInspector] public float deviceButtonClickTimerSpentHolder;
+    [HideInInspector] public float deviceButtonClickTimerTotal;
+
+    [HideInInspector] public int toggleOnID;
+    [HideInInspector] public int toggleOffID;
+
     //waypoint varibles
     public WayPointChecker checker;
     public GameObject[] wayPoints;
@@ -88,6 +107,43 @@ public class FinalTempDire : MonoBehaviour
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         Debug.Log("current" + currentWayPoint);
         
+    }
+
+    private void Awake()
+    {
+        toggleReference.action.started += Toggle;
+        toggleOffReference.action.started += ToggleOff;
+    }
+
+    private void OnDestroy()
+    {
+        toggleReference.action.started -= Toggle;
+        toggleOffReference.action.started -= ToggleOff;
+    }
+
+    private void Toggle(InputAction.CallbackContext context)
+    {
+        toggleOnID += 1;
+        Debug.Log("ToggleOn" + toggleOnID);
+        deviceButtonClickStart = 1;
+        startButtonClickTimer = true;
+        deviceButtonClickTimerStart = Time.time;
+        deviceButtonClickStop = 0;
+    }
+
+    private void ToggleOff(InputAction.CallbackContext context)
+    {
+        toggleOffID += 1;
+        Debug.Log("ToggleOff" + toggleOffID);
+        deviceButtonClickStop = 1;
+        startButtonClickTimer = false;
+        deviceButtonClickTimerEnd = Time.time;
+        deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
+        deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
+        deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
+        Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
+        deviceButtonClickTimerSpent = 0f;
+        deviceButtonClickStart = 0;
     }
 
 

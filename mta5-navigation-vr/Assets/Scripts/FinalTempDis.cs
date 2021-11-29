@@ -15,6 +15,22 @@ public class FinalTempDis : MonoBehaviour
 
     [SerializeField] private Transform navDevicePointer;
     [SerializeField] private Transform objectivePos;
+
+    [HideInInspector] public int deviceButtonClickStart;
+    [HideInInspector] public int deviceButtonClickStop;
+    [HideInInspector] public float deviceButtonClickTimer;
+    [HideInInspector] public bool startButtonClickTimer = false;
+
+
+    [HideInInspector] public float deviceButtonClickTimerStart;
+    [HideInInspector] public float deviceButtonClickTimerEnd;
+    [HideInInspector] public float deviceButtonClickTimerSpent;
+    [HideInInspector] public float deviceButtonClickTimerSpentHolder;
+    [HideInInspector] public float deviceButtonClickTimerTotal;
+
+    [HideInInspector] public int toggleOnID;
+    [HideInInspector] public int toggleOffID;
+
     //public TextMeshPro textTimer;
     private LineRenderer lineRenderer;
     public float playerDistFromObj;
@@ -109,27 +125,6 @@ public class FinalTempDis : MonoBehaviour
         connectLines(true);
         distanceFromPlayerToObjective();
 
-        // When you press 1 this code starts playing the audiosource sound and loops it, and starts the timer.
-        //if (Input.GetButtonDown("button1"))
-
-        //{
-        //    audioSource.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / audioSource.pitch);
-        //    timerStart = Time.time;
-        //    audioSource.Play();
-        //    audioSource.loop = true;
-
-
-        //}
-
-        //// When you press 2 this code runs which saves the time spent listening and stops the looping.
-        //if (Input.GetButtonDown("button2"))
-        //{
-        //    timerEnd = Time.time;
-        //    timeSpentHolder = timerEnd - timerStart;
-        //    timeSpent += timeSpentHolder;
-        //    Debug.Log("Total button time spent: " + timeSpent);
-        //    audioSource.loop = false;
-        //}
     }
 
     // Thomas kode.
@@ -184,19 +179,32 @@ public class FinalTempDis : MonoBehaviour
 
     private void Toggle(InputAction.CallbackContext context)
     {
+        toggleOnID += 1;
         audioSource.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / audioSource.pitch);
         timerStart = Time.time;
         audioSource.Play();
         audioSource.loop = true;
+        deviceButtonClickStart = 1;
+        startButtonClickTimer = true;
+        deviceButtonClickTimerStart = Time.time;
+        deviceButtonClickStop = 0;
+
     }
 
     private void ToggleOff(InputAction.CallbackContext context)
     {
-        timerEnd = Time.time;
-        timeSpentHolder = timerEnd - timerStart;
-        timeSpent += timeSpentHolder;
-        Debug.Log("Total button time spent: " + timeSpent);
+        toggleOffID += 1;
+        Debug.Log("ToggleOff" + toggleOffID);
         audioSource.loop = false;
+        deviceButtonClickStop = 1;
+        startButtonClickTimer = false;
+        deviceButtonClickTimerEnd = Time.time;
+        deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
+        deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
+        deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
+        Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
+        deviceButtonClickTimerSpent = 0f;
+        deviceButtonClickStart = 0;
     }
     
     void updateCurrentWayPoint()

@@ -59,8 +59,8 @@ public class FinalFreqDire : MonoBehaviour
 
     void Update()
     {
-        buttonPress();
-        buttonRelease();
+        //buttonPress();
+        //buttonRelease();
 
         if (startTimer)
         {
@@ -176,37 +176,37 @@ public class FinalFreqDire : MonoBehaviour
         deviceButtonClickStart = 0;
     }
     
-    private void buttonPress()
-    {
-        if (Input.GetKeyDown("t"))
-        {
-            toggleOnID += 1;
-            Debug.Log("ToggleOn" + toggleOnID);
-            startTimer = true;
-            deviceButtonClickStart = 1;
-            Debug.Log("DBCSTART " + deviceButtonClickStop);
-            deviceButtonClickTimerStart = Time.time;
-            deviceButtonClickStop = 0;
+    //private void buttonPress()
+    //{
+    //    if (Input.GetKeyDown("t"))
+    //    {
+    //        toggleOnID += 1;
+    //        Debug.Log("ToggleOn" + toggleOnID);
+    //        startTimer = true;
+    //        deviceButtonClickStart = 1;
+    //        Debug.Log("DBCSTART " + deviceButtonClickStop);
+    //        deviceButtonClickTimerStart = Time.time;
+    //        deviceButtonClickStop = 0;
             
-        }
-    }
+    //    }
+    //}
 
-    private void buttonRelease()
-    {
-        if (Input.GetKeyDown("y"))
-        {
-            toggleOffID += 1;
-            Debug.Log("ToggleOff" + toggleOffID);
-            startTimer = false;
-            deviceButtonClickStop = 1;
-            Debug.Log("DBCSTOP " + deviceButtonClickStop);
-            deviceButtonClickTimerEnd = Time.time;
-            deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
-            deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
-            deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
-            Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
-            deviceButtonClickTimerSpent = 0f;
-            deviceButtonClickStart = 0;
-        }
-    }
+    //private void buttonRelease()
+    //{
+    //    if (Input.GetKeyDown("y"))
+    //    {
+    //        toggleOffID += 1;
+    //        Debug.Log("ToggleOff" + toggleOffID);
+    //        startTimer = false;
+    //        deviceButtonClickStop = 1;
+    //        Debug.Log("DBCSTOP " + deviceButtonClickStop);
+    //        deviceButtonClickTimerEnd = Time.time;
+    //        deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
+    //        deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
+    //        deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
+    //        Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
+    //        deviceButtonClickTimerSpent = 0f;
+    //        deviceButtonClickStart = 0;
+    //    }
+    //}
 }
