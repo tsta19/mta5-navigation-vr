@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class directionTempoInc : MonoBehaviour
+public class FinalTempDire : MonoBehaviour
 {
     private Vector3 _directionVector;
     private float angle;
