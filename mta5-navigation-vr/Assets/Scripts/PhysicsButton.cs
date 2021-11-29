@@ -58,7 +58,28 @@ public class PhysicsButton : MonoBehaviour
                 //Debug.Log("mazeaarray" + randomizer.mazeArray);
                 GameObject newMaze = GameObject.Find("randomizerObject");
                 newMaze.GetComponent<Randomizer>().updateMaze();
-                
+                Debug.Log("Mazeid: " + WayPointChecker.MazeID);
+               
+                if (WayPointChecker.MazeID == 1)
+                {
+                    Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
+                    FinalTempDis.arrayIndex = 3;
+                }
+                if (WayPointChecker.MazeID == 2)
+                {
+                    Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
+                    FinalTempDis.arrayIndex = 10;
+                }
+                if (WayPointChecker.MazeID == 3)
+                {
+                    Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
+                    FinalTempDis.arrayIndex = 15;
+                }
+                if (WayPointChecker.MazeID == 4)
+                {
+                    Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
+                    FinalTempDis.arrayIndex = 21;
+                }
             }
             if (!endpoint)
             {
@@ -67,6 +88,7 @@ public class PhysicsButton : MonoBehaviour
                 WayPointChecker.MazeTag += 1;
                 startButtonPressd = true;
                 endButtonPressd = false;
+                
             }
             
         }

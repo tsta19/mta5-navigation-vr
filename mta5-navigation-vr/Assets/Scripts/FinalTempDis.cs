@@ -54,7 +54,7 @@ public class FinalTempDis : MonoBehaviour
     public GameObject[] wayPoints;
     private GameObject waypoint;
     private GameObject currentWayPoint;
-    private int arrayIndex = 0;
+    public static int arrayIndex = 0;
     private List<GameObject> sortedWaypoint;
     private float savedDist;
     private float currentDist;

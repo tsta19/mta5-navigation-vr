@@ -10,6 +10,7 @@ public class Player_Teleportation : MonoBehaviour
 
     // Player Reference
     public GameObject player;
+    public GameObject device;
 
     // Teleport Reference
     public Transform teleportTarget1;
@@ -28,6 +29,9 @@ public class Player_Teleportation : MonoBehaviour
         maze = randomizer.GetComponent<Randomizer>().getMaze();
         Transform child = maze.transform.Find("Teleporter").transform.Find("TeleportTarget");
         player.transform.position = child.transform.position;
+        device = GameObject.Find("GrabInteractable");
+        device.transform.position = child.transform.position;
+        Debug.Log("child: " + child);
     
         /*if (WayPointChecker.MazeID == 0)
         {

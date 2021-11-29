@@ -31,8 +31,8 @@ public class Randomizer : MonoBehaviour
 
     public GameObject getMaze() {
         int[] array = getLine(mazeAmount);
-        int mazeIndex = array[WayPointChecker.MazeID];
-        return mazes[mazeIndex];
+        int mazeIndex = array[WayPointChecker.MazeID-1];
+        return mazes[mazeIndex - 1];
     }
 
     /*int[][] mazeArray;

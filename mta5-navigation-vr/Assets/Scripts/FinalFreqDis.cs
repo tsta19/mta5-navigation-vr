@@ -83,12 +83,17 @@ public class FinalFreqDis : MonoBehaviour
         //Ser om waypoint skal opdateres
         if (checker.imActive == false && arrayIndex < wayPoints.Length)
         {
-            distanceHolder = currentDist;
             updateCurrentWayPoint();
+            Debug.Log("distanceholder1: " + distanceHolder);
+            Debug.Log("distanceholder3: " + currentDist);
+            currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
+            distanceHolder = currentDist;
+            Debug.Log("distanceholder2: " + distanceHolder);
             print("new waypoint assigned: " + currentWayPoint);
             print("Waypoint array: " + sortedWaypoint);
             print("Waypoint array length: " + sortedWaypoint.Count);
-            
+
+
         }
         currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
        
