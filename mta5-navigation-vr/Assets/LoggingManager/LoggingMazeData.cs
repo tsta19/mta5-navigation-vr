@@ -19,11 +19,11 @@ public class LoggingMazeData : MonoBehaviour
     private int placeholder = 420;
     
     // Condition Booleans
-    private bool conditionFinalFreqDire = true;
-    private bool conditionFinalFreqDis = false;
-    private bool conditionFinalTempDire = false;
-    private bool conditionFinalTempDis = false;
-    private bool conditionControlGroup = false;
+    public bool conditionFinalFreqDire = false;
+    public bool conditionFinalFreqDis = false;
+    public bool conditionFinalTempDire = false;
+    public bool conditionFinalTempDis = false;
+    public bool conditionControlGroup = false;
 
     void Start()
     {
@@ -72,7 +72,15 @@ public class LoggingMazeData : MonoBehaviour
             finalFreqDis.enabled = false;
             finalTempDire.enabled = false;
             finalTempDis.enabled = true;
-            
+        }
+        
+        if (conditionControlGroup)
+        {
+            logDataConditionControlGroup();
+            finalFreqDire.enabled = false;
+            finalFreqDis.enabled = false;
+            finalTempDire.enabled = false;
+            finalTempDis.enabled = false;
         }
 
         
@@ -141,16 +149,16 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
         
         // Event Logger
-        loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDire.deviceButtonClickStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDire.deviceButtonClickTimerStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerSpent", finalFreqDire.deviceButtonClickTimerSpentHolder);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerEnd", finalFreqDire.deviceButtonClickTimerEnd);
-        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalFreqDire.deviceButtonClickStop);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerTotal", finalFreqDire.deviceButtonClickTimerTotal);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDis.deviceButtonClickStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDis.deviceButtonClickTimerStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerSpent", finalFreqDis.deviceButtonClickTimerSpentHolder);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerEnd", finalFreqDis.deviceButtonClickTimerEnd);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalFreqDis.deviceButtonClickStop);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerTotal", finalFreqDis.deviceButtonClickTimerTotal);
         loggingManager.Log(csvFileName, "StartPointButtonPress", PhysicsButton.startButtonPressd);
         loggingManager.Log(csvFileName, "EndPointButtonPress", PhysicsButton.endButtonPressd);
-        loggingManager.Log(csvFileName, "ToggleOnID", finalFreqDire.toggleOnID);
-        loggingManager.Log(csvFileName, "ToggleOffID", finalFreqDire.toggleOffID);
+        loggingManager.Log(csvFileName, "ToggleOnID", finalFreqDis.toggleOnID);
+        loggingManager.Log(csvFileName, "ToggleOffID", finalFreqDis.toggleOffID);
         
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
@@ -180,16 +188,16 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
         
         // Event Logger
-        loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDire.deviceButtonClickStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDire.deviceButtonClickTimerStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerSpent", finalFreqDire.deviceButtonClickTimerSpentHolder);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerEnd", finalFreqDire.deviceButtonClickTimerEnd);
-        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalFreqDire.deviceButtonClickStop);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerTotal", finalFreqDire.deviceButtonClickTimerTotal);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalTempDire.deviceButtonClickStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalTempDire.deviceButtonClickTimerStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerSpent", finalTempDire.deviceButtonClickTimerSpentHolder);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerEnd", finalTempDire.deviceButtonClickTimerEnd);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalTempDire.deviceButtonClickStop);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerTotal", finalTempDire.deviceButtonClickTimerTotal);
         loggingManager.Log(csvFileName, "StartPointButtonPress", PhysicsButton.startButtonPressd);
         loggingManager.Log(csvFileName, "EndPointButtonPress", PhysicsButton.endButtonPressd);
-        loggingManager.Log(csvFileName, "ToggleOnID", finalFreqDire.toggleOnID);
-        loggingManager.Log(csvFileName, "ToggleOffID", finalFreqDire.toggleOffID);
+        loggingManager.Log(csvFileName, "ToggleOnID", finalTempDire.toggleOnID);
+        loggingManager.Log(csvFileName, "ToggleOffID", finalTempDire.toggleOffID);
         
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
@@ -219,16 +227,16 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
         
         // Event Logger
-        loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDire.deviceButtonClickStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDire.deviceButtonClickTimerStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerSpent", finalFreqDire.deviceButtonClickTimerSpentHolder);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerEnd", finalFreqDire.deviceButtonClickTimerEnd);
-        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalFreqDire.deviceButtonClickStop);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerTotal", finalFreqDire.deviceButtonClickTimerTotal);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalTempDis.deviceButtonClickStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalTempDis.deviceButtonClickTimerStart);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerSpent", finalTempDis.deviceButtonClickTimerSpentHolder);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerEnd", finalTempDis.deviceButtonClickTimerEnd);
+        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalTempDis.deviceButtonClickStop);
+        loggingManager.Log(csvFileName, "DeviceButtonClickTimerTotal", finalTempDis.deviceButtonClickTimerTotal);
         loggingManager.Log(csvFileName, "StartPointButtonPress", PhysicsButton.startButtonPressd);
         loggingManager.Log(csvFileName, "EndPointButtonPress", PhysicsButton.endButtonPressd);
-        loggingManager.Log(csvFileName, "ToggleOnID", finalFreqDire.toggleOnID);
-        loggingManager.Log(csvFileName, "ToggleOffID", finalFreqDire.toggleOffID);
+        loggingManager.Log(csvFileName, "ToggleOnID", finalTempDis.toggleOnID);
+        loggingManager.Log(csvFileName, "ToggleOffID", finalTempDis.toggleOffID);
         
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
@@ -256,18 +264,6 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "Freq/Tempo", placeholder);
         loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
         loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
-        
-        // Event Logger
-        loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDire.deviceButtonClickStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDire.deviceButtonClickTimerStart);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerSpent", finalFreqDire.deviceButtonClickTimerSpentHolder);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerEnd", finalFreqDire.deviceButtonClickTimerEnd);
-        loggingManager.Log(csvFileName, "DeviceButtonClickStop", finalFreqDire.deviceButtonClickStop);
-        loggingManager.Log(csvFileName, "DeviceButtonClickTimerTotal", finalFreqDire.deviceButtonClickTimerTotal);
-        loggingManager.Log(csvFileName, "StartPointButtonPress", PhysicsButton.startButtonPressd);
-        loggingManager.Log(csvFileName, "EndPointButtonPress", PhysicsButton.endButtonPressd);
-        loggingManager.Log(csvFileName, "ToggleOnID", finalFreqDire.toggleOnID);
-        loggingManager.Log(csvFileName, "ToggleOffID", finalFreqDire.toggleOffID);
         
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
