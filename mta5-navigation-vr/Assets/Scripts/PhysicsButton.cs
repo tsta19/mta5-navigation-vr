@@ -27,6 +27,10 @@ public class PhysicsButton : MonoBehaviour
     // Timers til at måle tid
     public static float[] timers;
 
+    // Allowed maze time
+    private bool timerStart;
+    public float exitTimer;
+
     //Laver nogle unity events, der bliver triggered når knappen bliver trykket.
     public UnityEvent onPressed, onReleased;
     
@@ -53,6 +57,7 @@ public class PhysicsButton : MonoBehaviour
                 Debug.Log("TIME: " + timers[levelIndex]);
                 endButtonPressd = true;
                 startButtonPressd = false;
+                timerStart = false;
                 //Debug.Log("New maze started");
                 //randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
                 //Debug.Log("mazeaarray" + randomizer.mazeArray);
@@ -88,11 +93,14 @@ public class PhysicsButton : MonoBehaviour
                 WayPointChecker.MazeTag += 1;
                 startButtonPressd = true;
                 endButtonPressd = false;
-                
+                timerStart = true;
+                exitTimer = 0;
             }
             
         }
-        
+        if (exitStart > 300) {
+            forceTeleport();
+        }
     }
 
     //Ser om distance mellem knappens start position og knappens nuværende position er stor nok til at gå ud over dødszonen
@@ -111,7 +119,6 @@ public class PhysicsButton : MonoBehaviour
     {
         isPressed = true;
         
-        
         onPressed.Invoke();
         Debug.Log("Pressed");
     }
@@ -120,5 +127,15 @@ public class PhysicsButton : MonoBehaviour
         isPressed = false;
         onReleased.Invoke();
         Debug.Log("Released");
+    }
+
+    private void forceTeleport() {
+        GameObject randomizer = GameObject.Find("randomizerObject");
+        maze = randomizer.GetComponent<Randomizer>().getMaze();
+        Transform child = maze.transform.Find("Teleporter").transform.Find("TeleportTarget");
+        player.transform.position = child.transform.position;
+        device = GameObject.Find("GrabInteractable");
+        device.transform.position = child.transform.position;
+        Debug.Log("child: " + child);
     }
 }
