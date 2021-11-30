@@ -12,6 +12,8 @@ public class LoggingMazeData : MonoBehaviour
     private FinalTempDire finalTempDire;
     private FinalTempDis finalTempDis;
     private PhysicsButton buttonData;
+
+    public static bool isDone = false;
     //private VariableHandler variableHandler;
     
     public string Sex;
@@ -92,14 +94,23 @@ public class LoggingMazeData : MonoBehaviour
             finalTempDis.enabled = false;
         }
 
-        
-        
-        if (Input.GetKey("space"))
+        if (Player_Teleportation.isForceTP)
+        {
+            loggingManager.Log(csvFileName, "isForceTP", Player_Teleportation.isForceTP);
+            Player_Teleportation.isForceTP = false;
+        }
+        else
+        {
+            loggingManager.Log(csvFileName, "isForceTP", Player_Teleportation.isForceTP);
+        }
+
+        if (Randomizer.idfk > 3 && isDone==false || Input.GetKey("space"))
         {
             loggingManager.SaveLog(csvFileName);
             loggingManager.ClearLog(csvFileName);
             loggingManager.NewFilestamp();
             print("CSV was saved");
+            isDone = true;
         }
     }
 

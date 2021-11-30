@@ -8,6 +8,7 @@ public class Player_Teleportation : MonoBehaviour
     // Get mazeID
     public GameObject maze;
 
+    public static bool isForceTP;
     // Player Reference
     public GameObject player;
     public GameObject device;
@@ -54,13 +55,13 @@ public class Player_Teleportation : MonoBehaviour
         }*/
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (PhysicsButton.timerStart) {
             PhysicsButton.exitTimer += Time.deltaTime;
             print("DELTATIME: " + Time.deltaTime);
             print("TIMERERENEN: " + PhysicsButton.exitTimer);
-            if (PhysicsButton.exitTimer > 10000) {
+            if (PhysicsButton.exitTimer > 1500) {
                 forceTeleport();
                 PhysicsButton.exitTimer = 0;
                 PhysicsButton.timerStart = false;
@@ -78,13 +79,15 @@ public class Player_Teleportation : MonoBehaviour
         device = GameObject.Find("GrabInteractable");
         device.transform.position = child.transform.position;
         Debug.Log("child: " + child);
-        PhysicsButton.maze1Bool = true; 
-
+        PhysicsButton.maze1Bool = true;
+        
 
     }
     void forceTeleport()
-     {
+     { 
+        isForceTP = true;
         WayPointChecker.MazeID++;
         teleport();
-    }
+        
+     }
 }
