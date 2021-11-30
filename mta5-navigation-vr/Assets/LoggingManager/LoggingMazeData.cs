@@ -13,7 +13,16 @@ public class LoggingMazeData : MonoBehaviour
     private FinalTempDis finalTempDis;
     private PhysicsButton buttonData;
     //private VariableHandler variableHandler;
-
+    
+    public string Sex;
+    public int TestID;
+    public int Age;
+    public bool MotionSickness;
+    public int VariableCondition;
+    public string FreqTemp;
+    public string DirecDist;
+    
+    
     public GameObject player;
     private string csvFileName = "Maze";
     private int placeholder = 420;
@@ -97,18 +106,15 @@ public class LoggingMazeData : MonoBehaviour
     void logDataCondition1()
     {
         // Meta Logger
-        loggingManager.Log(csvFileName, "Timestamp", placeholder);
-        loggingManager.Log(csvFileName, "Sex", placeholder);
-        loggingManager.Log(csvFileName, "TestID", placeholder);
-        loggingManager.Log(csvFileName, "ParticipantID", placeholder);
-        loggingManager.Log(csvFileName, "Age", placeholder);
-        loggingManager.Log(csvFileName, "MotionSickness", placeholder);
-        loggingManager.Log(csvFileName, "MazeID", placeholder);
-        loggingManager.Log(csvFileName, "VariableCondition", placeholder);
-        loggingManager.Log(csvFileName, "Freq/Tempo", placeholder);
-        loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
-        loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
-        
+        loggingManager.Log(csvFileName, "Sex", Sex);
+        loggingManager.Log(csvFileName, "TestID", TestID);
+        loggingManager.Log(csvFileName, "Age", Age);
+        loggingManager.Log(csvFileName, "MotionSickness", MotionSickness);
+        loggingManager.Log(csvFileName, "MazeID", WayPointChecker.MazeID);
+        loggingManager.Log(csvFileName, "VariableCondition", VariableCondition);
+        loggingManager.Log(csvFileName, "Freq/Tempo", FreqTemp);
+        loggingManager.Log(csvFileName, "Direction/Distance", DirecDist);
+
         // Event Logger
         loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDire.deviceButtonClickStart);
         loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDire.deviceButtonClickTimerStart);
@@ -136,19 +142,16 @@ public class LoggingMazeData : MonoBehaviour
     void logDataCondition2()
     {
         // Meta Logger
-        loggingManager.Log(csvFileName, "Timestamp", placeholder);
-        loggingManager.Log(csvFileName, "Sex", placeholder);
-        loggingManager.Log(csvFileName, "TestID", placeholder);
-        loggingManager.Log(csvFileName, "ParticipantID", placeholder);
-        loggingManager.Log(csvFileName, "Age", placeholder);
-        loggingManager.Log(csvFileName, "MotionSickness", placeholder);
-        loggingManager.Log(csvFileName, "MazeID", placeholder);
-        loggingManager.Log(csvFileName, "VariableCondition", placeholder);
-        loggingManager.Log(csvFileName, "Freq/Tempo", placeholder);
-        loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
-        loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
+        loggingManager.Log(csvFileName, "Sex", Sex);
+        loggingManager.Log(csvFileName, "TestID", TestID);
+        loggingManager.Log(csvFileName, "Age", Age);
+        loggingManager.Log(csvFileName, "MotionSickness", MotionSickness);
+        loggingManager.Log(csvFileName, "MazeID", WayPointChecker.MazeID);
+        loggingManager.Log(csvFileName, "VariableCondition", VariableCondition);
+        loggingManager.Log(csvFileName, "Freq/Tempo", FreqTemp);
+        loggingManager.Log(csvFileName, "Direction/Distance", DirecDist);
         
-        /*
+        
         // Event Logger
         loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalFreqDis.deviceButtonClickStart);
         loggingManager.Log(csvFileName, "DeviceButtonClickTimerStart", finalFreqDis.deviceButtonClickTimerStart);
@@ -161,7 +164,7 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "ToggleOnID", finalFreqDis.toggleOnID);
         loggingManager.Log(csvFileName, "ToggleOffID", finalFreqDis.toggleOffID);
         
-        */
+        
         
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
@@ -178,17 +181,14 @@ public class LoggingMazeData : MonoBehaviour
     void logDataCondition3()
     {
         // Meta Logger
-        loggingManager.Log(csvFileName, "Timestamp", placeholder);
-        loggingManager.Log(csvFileName, "Sex", placeholder);
-        loggingManager.Log(csvFileName, "TestID", placeholder);
-        loggingManager.Log(csvFileName, "ParticipantID", placeholder);
-        loggingManager.Log(csvFileName, "Age", placeholder);
-        loggingManager.Log(csvFileName, "MotionSickness", placeholder);
-        loggingManager.Log(csvFileName, "MazeID", placeholder);
-        loggingManager.Log(csvFileName, "VariableCondition", placeholder);
-        loggingManager.Log(csvFileName, "Freq/Tempo", placeholder);
-        loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
-        loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
+        loggingManager.Log(csvFileName, "Sex", Sex);
+        loggingManager.Log(csvFileName, "TestID", TestID);
+        loggingManager.Log(csvFileName, "Age", Age);
+        loggingManager.Log(csvFileName, "MotionSickness", MotionSickness);
+        loggingManager.Log(csvFileName, "MazeID", WayPointChecker.MazeID);
+        loggingManager.Log(csvFileName, "VariableCondition", VariableCondition);
+        loggingManager.Log(csvFileName, "Freq/Tempo", FreqTemp);
+        loggingManager.Log(csvFileName, "Direction/Distance", DirecDist);
         
         // Event Logger
         loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalTempDire.deviceButtonClickStart);
@@ -217,17 +217,14 @@ public class LoggingMazeData : MonoBehaviour
     void logDataCondition4()
     {
         // Meta Logger
-        loggingManager.Log(csvFileName, "Timestamp", placeholder);
-        loggingManager.Log(csvFileName, "Sex", placeholder);
-        loggingManager.Log(csvFileName, "TestID", placeholder);
-        loggingManager.Log(csvFileName, "ParticipantID", placeholder);
-        loggingManager.Log(csvFileName, "Age", placeholder);
-        loggingManager.Log(csvFileName, "MotionSickness", placeholder);
-        loggingManager.Log(csvFileName, "MazeID", placeholder);
-        loggingManager.Log(csvFileName, "VariableCondition", placeholder);
-        loggingManager.Log(csvFileName, "Freq/Tempo", placeholder);
-        loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
-        loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
+        loggingManager.Log(csvFileName, "Sex", Sex);
+        loggingManager.Log(csvFileName, "TestID", TestID);
+        loggingManager.Log(csvFileName, "Age", Age);
+        loggingManager.Log(csvFileName, "MotionSickness", MotionSickness);
+        loggingManager.Log(csvFileName, "MazeID", WayPointChecker.MazeID);
+        loggingManager.Log(csvFileName, "VariableCondition", VariableCondition);
+        loggingManager.Log(csvFileName, "Freq/Tempo", FreqTemp);
+        loggingManager.Log(csvFileName, "Direction/Distance", DirecDist);
         
         // Event Logger
         loggingManager.Log(csvFileName, "DeviceButtonClickStart", finalTempDis.deviceButtonClickStart);
@@ -256,17 +253,14 @@ public class LoggingMazeData : MonoBehaviour
     void logDataConditionControlGroup()
     {
         // Meta Logger
-        loggingManager.Log(csvFileName, "Timestamp", placeholder);
-        loggingManager.Log(csvFileName, "Sex", placeholder);
-        loggingManager.Log(csvFileName, "TestID", placeholder);
-        loggingManager.Log(csvFileName, "ParticipantID", placeholder);
-        loggingManager.Log(csvFileName, "Age", placeholder);
-        loggingManager.Log(csvFileName, "MotionSickness", placeholder);
-        loggingManager.Log(csvFileName, "MazeID", placeholder);
-        loggingManager.Log(csvFileName, "VariableCondition", placeholder);
-        loggingManager.Log(csvFileName, "Freq/Tempo", placeholder);
-        loggingManager.Log(csvFileName, "Direction/Distance", placeholder);
-        loggingManager.Log(csvFileName, "NewScenarioTest", placeholder);
+        loggingManager.Log(csvFileName, "Sex", Sex);
+        loggingManager.Log(csvFileName, "TestID", TestID);
+        loggingManager.Log(csvFileName, "Age", Age);
+        loggingManager.Log(csvFileName, "MotionSickness", MotionSickness);
+        loggingManager.Log(csvFileName, "MazeID", WayPointChecker.MazeID);
+        loggingManager.Log(csvFileName, "VariableCondition", VariableCondition);
+        loggingManager.Log(csvFileName, "Freq/Tempo", FreqTemp);
+        loggingManager.Log(csvFileName, "Direction/Distance", DirecDist);
         
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
