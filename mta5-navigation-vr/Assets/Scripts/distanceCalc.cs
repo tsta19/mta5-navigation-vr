@@ -16,10 +16,16 @@ public class distanceCalc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 distanceVector = transform.position - oldPos;
-        float distanceThisFrame = distanceVector.magnitude;
-        totalDistance += distanceThisFrame;
-        oldPos = transform.position;
-        //Debug.Log("Distance travelled: " + totalDistance);
+        
+        if (PhysicsButton.startButtonPressd)
+        {
+            Vector3 distanceVector = transform.position - oldPos;
+            float distanceThisFrame = distanceVector.magnitude;
+            totalDistance += distanceThisFrame;
+            oldPos = transform.position;
+            //Debug.Log("Distance travelled: " + totalDistance);
+        }
     }
+    
+    
 }
