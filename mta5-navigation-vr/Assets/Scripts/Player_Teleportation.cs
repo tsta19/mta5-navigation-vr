@@ -59,8 +59,7 @@ public class Player_Teleportation : MonoBehaviour
     {
         if (PhysicsButton.timerStart) {
             PhysicsButton.exitTimer += Time.deltaTime;
-            print("DELTATIME: " + Time.deltaTime);
-            print("TIMERERENEN: " + PhysicsButton.exitTimer);
+            
             if (PhysicsButton.exitTimer > 1500) {
                 forceTeleport();
                 PhysicsButton.exitTimer = 0;
@@ -84,8 +83,10 @@ public class Player_Teleportation : MonoBehaviour
 
     }
     void forceTeleport()
-     { 
+    {
         isForceTP = true;
+        GameObject randomizer = GameObject.Find("randomizerObject");
+        randomizer.GetComponent<Randomizer>().updateMaze();
         WayPointChecker.MazeID++;
         teleport();
         

@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Serialization;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class LoggingMazeData : MonoBehaviour
 {
-    
+    private float oldPosX;
+    private float oldPosZ;
+    private float newPosX;
+    private float newPosZ;
     private LoggingManager loggingManager;
     private FinalFreqDire finalFreqDire;
     private FinalFreqDis finalFreqDis;
@@ -14,6 +18,7 @@ public class LoggingMazeData : MonoBehaviour
     private PhysicsButton buttonData;
 
     public static bool isDone = false;
+    public static bool isMoving = false;
     //private VariableHandler variableHandler;
     
     public string Sex;
@@ -26,6 +31,7 @@ public class LoggingMazeData : MonoBehaviour
     
     
     public GameObject player;
+    public GameObject device;
     private string csvFileName = "Maze";
     private int placeholder = 420;
     
@@ -47,6 +53,9 @@ public class LoggingMazeData : MonoBehaviour
     
     void Update()
     {
+        
+        loggingManager.Log(csvFileName, "TrialID", WayPointChecker.MazeTag);
+        
         if (conditionFinalFreqDire)
         {
             logDataCondition1();
@@ -93,6 +102,14 @@ public class LoggingMazeData : MonoBehaviour
             finalTempDire.enabled = false;
             finalTempDis.enabled = false;
         }
+        
+        loggingManager.Log(csvFileName, "IsMoving", isMoving);
+        loggingManager.Log(csvFileName, "PlayerRotationX", player.transform.rotation.x);
+        loggingManager.Log(csvFileName, "PlayerRotationY", player.transform.rotation.y);
+        loggingManager.Log(csvFileName, "PlayerRotationZ", player.transform.rotation.z);
+        loggingManager.Log(csvFileName, "DeviceRotationX", device.transform.rotation.x);
+        loggingManager.Log(csvFileName, "DeviceRotationY", device.transform.rotation.y);
+        loggingManager.Log(csvFileName, "DeviceRotationZ", device.transform.rotation.z);
 
         if (Player_Teleportation.isForceTP)
         {
@@ -142,10 +159,12 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
         loggingManager.Log(csvFileName, "TimeSinceLastFrame", Time.deltaTime);
         loggingManager.Log(csvFileName, "MazeTime", PhysicsButton.timers[PhysicsButton.levelIndex]);
-        loggingManager.Log(csvFileName, "EvaluationTime", placeholder);
+        loggingManager.Log(csvFileName, "EvaluationTime", Time.time);
         loggingManager.Log(csvFileName, "PlayerPositionX", player.transform.position.x);
         loggingManager.Log(csvFileName, "PlayerPositionY", player.transform.position.y);
         loggingManager.Log(csvFileName, "PlayerPositionZ", player.transform.position.z);
+        
+        
         
         // loggingManager.Log(csvFileName, "VarName", placeholder); - Template for more variables
     }
@@ -181,7 +200,7 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
         loggingManager.Log(csvFileName, "TimeSinceLastFrame", Time.deltaTime);
         loggingManager.Log(csvFileName, "MazeTime", PhysicsButton.timers[PhysicsButton.levelIndex]);
-        loggingManager.Log(csvFileName, "EvaluationTime", placeholder);
+        loggingManager.Log(csvFileName, "EvaluationTime", Time.time);
         loggingManager.Log(csvFileName, "PlayerPositionX", player.transform.position.x);
         loggingManager.Log(csvFileName, "PlayerPositionY", player.transform.position.y);
         loggingManager.Log(csvFileName, "PlayerPositionZ", player.transform.position.z);
@@ -217,7 +236,7 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
         loggingManager.Log(csvFileName, "TimeSinceLastFrame", Time.deltaTime);
         loggingManager.Log(csvFileName, "MazeTime", PhysicsButton.timers[PhysicsButton.levelIndex]);
-        loggingManager.Log(csvFileName, "EvaluationTime", placeholder);
+        loggingManager.Log(csvFileName, "EvaluationTime", Time.time);
         loggingManager.Log(csvFileName, "PlayerPositionX", player.transform.position.x);
         loggingManager.Log(csvFileName, "PlayerPositionY", player.transform.position.y);
         loggingManager.Log(csvFileName, "PlayerPositionZ", player.transform.position.z);
@@ -253,7 +272,7 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
         loggingManager.Log(csvFileName, "TimeSinceLastFrame", Time.deltaTime);
         loggingManager.Log(csvFileName, "MazeTime", PhysicsButton.timers[PhysicsButton.levelIndex]);
-        loggingManager.Log(csvFileName, "EvaluationTime", placeholder);
+        loggingManager.Log(csvFileName, "EvaluationTime", Time.time);
         loggingManager.Log(csvFileName, "PlayerPositionX", player.transform.position.x);
         loggingManager.Log(csvFileName, "PlayerPositionY", player.transform.position.y);
         loggingManager.Log(csvFileName, "PlayerPositionZ", player.transform.position.z);
