@@ -61,7 +61,8 @@ public class FinalFreqDis : MonoBehaviour
 
     void Update()
     {
-
+        
+        checkIfNewMaze();
         if (startTimer) //Kører funktionen i det definerede interval
         {
             timer += Time.deltaTime;
@@ -119,8 +120,8 @@ public class FinalFreqDis : MonoBehaviour
 
     void updateCurrentWayPoint()
     {
-        currentWayPoint = sortedWaypoint[arrayIndex];
-        arrayIndex += 1;
+        currentWayPoint = sortedWaypoint[FinalTempDis.arrayIndex];
+        FinalTempDis.arrayIndex += 1;
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
@@ -164,7 +165,16 @@ public class FinalFreqDis : MonoBehaviour
     {
         startTimer = false;
     }
-    
+
+    void checkIfNewMaze()
+    {
+        if (PhysicsButton.maze1Bool)
+        {
+            updateCurrentWayPoint();
+            PhysicsButton.maze1Bool = false;
+
+        }
+    }
 }
 
 

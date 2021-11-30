@@ -12,6 +12,8 @@ public class PhysicsButton : MonoBehaviour
     [SerializeField] private float threshold = 0.1f;
     [SerializeField] private float deadZone = 0.025f;
 
+    
+    
     //Skal se knappens position
     private bool isPressed;
     private Vector3 startPos;
@@ -19,6 +21,11 @@ public class PhysicsButton : MonoBehaviour
     private Randomizer randomizer;
     public static bool startButtonPressd;
     public static bool endButtonPressd;
+
+    public static bool maze1Bool;
+    public static bool maze2Bool;
+    public static bool maze3Bool;
+    public static bool maze4Bool;
 
     // Vi bruger physicsButton til enten at starte en timer eller skifte level.
     public bool endpoint;
@@ -77,17 +84,17 @@ public class PhysicsButton : MonoBehaviour
                 if (WayPointChecker.MazeID == 2)
                 {
                     Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
-                    FinalTempDis.arrayIndex = 10;
+                    FinalTempDis.arrayIndex = 11;
                 }
                 if (WayPointChecker.MazeID == 3)
                 {
                     Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
-                    FinalTempDis.arrayIndex = 15;
+                    FinalTempDis.arrayIndex = 18;
                 }
                 if (WayPointChecker.MazeID == 4)
                 {
                     Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
-                    FinalTempDis.arrayIndex = 21;
+                    FinalTempDis.arrayIndex = 33;
                 }
             }
             if (!endpoint)

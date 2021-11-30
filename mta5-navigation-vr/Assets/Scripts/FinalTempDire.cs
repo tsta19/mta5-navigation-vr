@@ -69,7 +69,7 @@ public class FinalTempDire : MonoBehaviour
     // Update function which plays the detection code every frame, and some code to check if the "1" button has been pressed.
     void Update()
     {
-
+        checkIfNewMaze();
         startDetection();
         if (fyrDen)
         {
@@ -108,8 +108,8 @@ public class FinalTempDire : MonoBehaviour
     
     void updateCurrentWayPoint()
     {
-        currentWayPoint = sortedWaypoint[arrayIndex];
-        arrayIndex += 1;
+        currentWayPoint = sortedWaypoint[FinalTempDis.arrayIndex];
+        FinalTempDis.arrayIndex += 1;
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
@@ -159,7 +159,15 @@ public class FinalTempDire : MonoBehaviour
         sonar1.loop = false;
         
     }
+    void checkIfNewMaze()
+    {
+        if (PhysicsButton.maze1Bool)
+        {
+            updateCurrentWayPoint();
+            PhysicsButton.maze1Bool = false;
 
+        }
+    }
 
 }
 

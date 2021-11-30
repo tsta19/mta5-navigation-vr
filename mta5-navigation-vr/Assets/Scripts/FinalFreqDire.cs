@@ -36,7 +36,7 @@ public class FinalFreqDire : MonoBehaviour
     public GameObject[] wayPoints;
     private GameObject waypoint;
     private GameObject currentWayPoint;
-    private int arrayIndex = 0;
+   
     private List<GameObject> sortedWaypoint;
     private float savedDist;
     private float currentDist;
@@ -59,6 +59,9 @@ public class FinalFreqDire : MonoBehaviour
 
     void Update()
     {
+        
+        checkIfNewMaze();
+        
         //buttonPress();
         //buttonRelease();
 
@@ -73,7 +76,7 @@ public class FinalFreqDire : MonoBehaviour
             }
         }
 
-        if (checker.imActive == false && arrayIndex < wayPoints.Length)
+        if (checker.imActive == false && FinalTempDis.arrayIndex < wayPoints.Length)
         {
             updateCurrentWayPoint();
         }
@@ -108,10 +111,10 @@ public class FinalFreqDire : MonoBehaviour
         }
     }
 
-    void updateCurrentWayPoint()
+    public void updateCurrentWayPoint()
     {
-        currentWayPoint = sortedWaypoint[arrayIndex];
-        arrayIndex += 1;
+        currentWayPoint = sortedWaypoint[FinalTempDis.arrayIndex];
+        FinalTempDis.arrayIndex += 1;
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
@@ -125,17 +128,27 @@ public class FinalFreqDire : MonoBehaviour
         sortedWaypoint = new List<GameObject>();
         for (int i = 1; i <= wayPoints.Length; i++)
         {
-            if (WayPointChecker.MazeID == WayPointChecker.MazeTag)
-            {
-                waypoint = GameObject.Find("Waypoint" + i);
-                sortedWaypoint.Add(waypoint);
-                //print("LÆNGDE" + wayPoints.Length);
-                //print("NAVN" + waypoint);
-            }
+            
+            waypoint = GameObject.Find("Waypoint" + i);
+            sortedWaypoint.Add(waypoint);
+            //print("LÆNGDE" + wayPoints.Length);
+            //print("NAVN" + waypoint);
+            
         }
         //print("sorted" + sortedWaypoint);
         updateCurrentWayPoint();
-    }    
+    }
+
+    void checkIfNewMaze()
+    {
+        if (PhysicsButton.maze1Bool)
+        {
+            updateCurrentWayPoint();
+            PhysicsButton.maze1Bool = false;
+            
+        }
+       
+    }
     
     private void Awake()
     {

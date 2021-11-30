@@ -12,7 +12,7 @@ public class Player_Teleportation : MonoBehaviour
     public GameObject player;
     public GameObject device;
 
-    
+    private FinalFreqDire finalFreqDire;
     // Teleport Reference
     public Transform teleportTarget1;
     public Transform teleportTarget2;
@@ -78,6 +78,9 @@ public class Player_Teleportation : MonoBehaviour
         device = GameObject.Find("GrabInteractable");
         device.transform.position = child.transform.position;
         Debug.Log("child: " + child);
+        PhysicsButton.maze1Bool = true; 
+
+
     }
     void forceTeleport()
      {

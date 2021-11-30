@@ -86,7 +86,7 @@ public class FinalTempDis : MonoBehaviour
 
     void Update()
     {
-        
+        checkIfNewMaze();
         print("currentdist1: " + currentDist);
         // If the distance from the endgoal object changes(it moves) run this code.
         if (holder != currentDist)
@@ -190,5 +190,13 @@ public class FinalTempDis : MonoBehaviour
         Debug.Log("current" + currentWayPoint);
         
     }
-    
+    void checkIfNewMaze()
+    {
+        if (PhysicsButton.maze1Bool)
+        {
+            updateCurrentWayPoint();
+            PhysicsButton.maze1Bool = false;
+
+        }
+    }
 }
