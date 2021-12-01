@@ -98,8 +98,8 @@ public class Player_Teleportation : MonoBehaviour
     {
         isForceTP = true;
         GameObject randomizer = GameObject.Find("randomizerObject");
+        Randomizer.idfk++;
         randomizer.GetComponent<Randomizer>().updateMaze();
-        WayPointChecker.MazeID++;
         teleport();
         
      }

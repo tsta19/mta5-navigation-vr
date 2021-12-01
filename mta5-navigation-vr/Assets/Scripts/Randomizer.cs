@@ -30,9 +30,12 @@ public class Randomizer : MonoBehaviour
         int[] array = getLine(mazeAmount);
         
         print("MAZEID: " + array[idfk]);
-        WayPointChecker.MazeID = array[idfk];
         
-
+        if (PhysicsButton.firstPress)
+        {
+            WayPointChecker.MazeID = array[idfk];
+        }
+        
         for (int i = 0; i < array.Length; i++)
         {
             print("sokakok" + array[i]);
