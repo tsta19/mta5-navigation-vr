@@ -64,7 +64,7 @@ public class PhysicsButton : MonoBehaviour
             if (endpoint)
             {
                 
-                WayPointChecker.MazeTag += 1;
+                
                 Debug.Log(("mazetag; " + WayPointChecker.MazeTag));
                 timers[levelIndex] = Time.time - timers[levelIndex];
                 Debug.Log("idfk1: " + Randomizer.idfk);
@@ -100,6 +100,7 @@ public class PhysicsButton : MonoBehaviour
             }
             if (!endpoint)
             {
+                WayPointChecker.MazeTag += 1; 
                 Player_Teleportation.onlyOne = true;
                 GameObject newMaze = GameObject.Find("randomizerObject");
                 newMaze.GetComponent<Randomizer>().updateMaze();
