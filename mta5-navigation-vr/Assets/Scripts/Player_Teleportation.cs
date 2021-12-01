@@ -89,7 +89,9 @@ public class Player_Teleportation : MonoBehaviour
             Debug.Log("child: " + child);
             PhysicsButton.maze1Bool = true;
             onlyOne = false;
+            print("firstpress1");
             PhysicsButton.firstPress = true;
+            print("firstpress2");
         }
         
 
@@ -98,7 +100,6 @@ public class Player_Teleportation : MonoBehaviour
     {
         isForceTP = true;
         GameObject randomizer = GameObject.Find("randomizerObject");
-        Randomizer.idfk++;
         randomizer.GetComponent<Randomizer>().updateMaze();
         teleport();
         

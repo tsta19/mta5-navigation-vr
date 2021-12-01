@@ -113,12 +113,14 @@ public class FinalFreqDire : MonoBehaviour
 
     public void updateCurrentWayPoint()
     {
+        print("previous waypoint: " + currentWayPoint);
         currentWayPoint = sortedWaypoint[FinalTempDis.arrayIndex];
         FinalTempDis.arrayIndex += 1;
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         Debug.Log("current" + currentWayPoint);
+        print("currentMazeID: " + WayPointChecker.MazeID);
     }
     
     void updateSortedArray()

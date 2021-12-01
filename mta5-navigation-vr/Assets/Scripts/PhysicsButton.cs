@@ -21,7 +21,7 @@ public class PhysicsButton : MonoBehaviour
     private Randomizer randomizer;
     public static bool startButtonPressd;
     public static bool endButtonPressd;
-    public static bool firstPress;
+    public static bool firstPress = false;
 
     public static bool maze1Bool;
     public static bool maze2Bool;
@@ -51,7 +51,6 @@ public class PhysicsButton : MonoBehaviour
         //start positionen er sat til knappens lokale position, da det er knappens position vi er ude efter, og ikke en position kontra en anden position.
         startPos = transform.localPosition;
         joint = GetComponent<ConfigurableJoint>();
-        firstPress = false;
         randomizer = GetComponent<Randomizer>();
         timers = new float[5];
     }
@@ -77,6 +76,15 @@ public class PhysicsButton : MonoBehaviour
                 //Debug.Log("mazeaarray" + randomizer.mazeArray);
                 
                
+
+            }
+            if (!endpoint)
+            {
+                WayPointChecker.MazeTag += 1; 
+                Player_Teleportation.onlyOne = true;
+                GameObject newMaze = GameObject.Find("randomizerObject");
+                newMaze.GetComponent<Randomizer>().updateMaze();
+                
                 if (WayPointChecker.MazeID == 1)
                 {
                     Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
@@ -97,13 +105,7 @@ public class PhysicsButton : MonoBehaviour
                     Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
                     FinalTempDis.arrayIndex = 33;
                 }
-            }
-            if (!endpoint)
-            {
-                WayPointChecker.MazeTag += 1; 
-                Player_Teleportation.onlyOne = true;
-                GameObject newMaze = GameObject.Find("randomizerObject");
-                newMaze.GetComponent<Randomizer>().updateMaze();
+                
                 timers[levelIndex] = Time.time;
                 Debug.Log("Timer started");
                 startButtonPressd = true;
