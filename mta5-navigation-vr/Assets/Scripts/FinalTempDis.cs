@@ -183,7 +183,6 @@ public class FinalTempDis : MonoBehaviour
     void updateCurrentWayPoint()
     {
         currentWayPoint = sortedWaypoint[arrayIndex];
-        arrayIndex += 1;
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
