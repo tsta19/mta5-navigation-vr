@@ -87,8 +87,10 @@ public class Player_Teleportation : MonoBehaviour
             device = GameObject.Find("GrabInteractable");
             device.transform.position = child.transform.position;
             Debug.Log("child: " + child);
-            PhysicsButton.maze1Bool = true;
             onlyOne = false;
+            GameObject newMaze = GameObject.Find("randomizerObject");
+            newMaze.GetComponent<Randomizer>().updateMaze();
+            PhysicsButton.maze1Bool = true;
             print("firstpress1");
             PhysicsButton.firstPress = true;
             print("firstpress2");

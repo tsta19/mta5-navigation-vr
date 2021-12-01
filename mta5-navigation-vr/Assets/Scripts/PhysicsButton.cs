@@ -74,37 +74,15 @@ public class PhysicsButton : MonoBehaviour
                 //Debug.Log("New maze started");
                 //randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
                 //Debug.Log("mazeaarray" + randomizer.mazeArray);
-                
-               
+
 
             }
             if (!endpoint)
             {
                 WayPointChecker.MazeTag += 1; 
                 Player_Teleportation.onlyOne = true;
-                GameObject newMaze = GameObject.Find("randomizerObject");
-                newMaze.GetComponent<Randomizer>().updateMaze();
                 
-                if (WayPointChecker.MazeID == 1)
-                {
-                    Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
-                    FinalTempDis.arrayIndex = 3;
-                }
-                if (WayPointChecker.MazeID == 2)
-                {
-                    Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
-                    FinalTempDis.arrayIndex = 11;
-                }
-                if (WayPointChecker.MazeID == 3)
-                {
-                    Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
-                    FinalTempDis.arrayIndex = 18;
-                }
-                if (WayPointChecker.MazeID == 4)
-                {
-                    Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
-                    FinalTempDis.arrayIndex = 33;
-                }
+                
                 
                 timers[levelIndex] = Time.time;
                 Debug.Log("Timer started");
