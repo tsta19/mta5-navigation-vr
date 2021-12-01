@@ -24,6 +24,7 @@ public class Player_Teleportation : MonoBehaviour
 
     // Debug Boolean
     private bool showDebug = true;
+    public static bool onlyOne;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -70,15 +71,26 @@ public class Player_Teleportation : MonoBehaviour
 
     void teleport()
     {
-        GameObject randomizer = GameObject.Find("randomizerObject");
-        maze = randomizer.GetComponent<Randomizer>().getMaze();
-        Transform child = maze.transform.Find("Teleporter").transform.Find("TeleportTarget");
-        print("childTP: " + child);
-        player.transform.position = child.transform.position;
-        device = GameObject.Find("GrabInteractable");
-        device.transform.position = child.transform.position;
-        Debug.Log("child: " + child);
-        PhysicsButton.maze1Bool = true;
+        if (onlyOne)
+        {
+            print("idfk: " + Randomizer.idfk);
+            if (PhysicsButton.firstPress)
+            {
+                Randomizer.idfk++;
+            }
+            
+            GameObject randomizer = GameObject.Find("randomizerObject");
+            maze = randomizer.GetComponent<Randomizer>().getMaze();
+            Transform child = maze.transform.Find("Teleporter").transform.Find("TeleportTarget");
+            print("childTP: " + child);
+            player.transform.position = child.transform.position;
+            device = GameObject.Find("GrabInteractable");
+            device.transform.position = child.transform.position;
+            Debug.Log("child: " + child);
+            PhysicsButton.maze1Bool = true;
+            onlyOne = false;
+            PhysicsButton.firstPress = true;
+        }
         
 
     }

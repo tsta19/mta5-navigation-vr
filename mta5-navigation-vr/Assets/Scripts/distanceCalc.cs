@@ -22,12 +22,12 @@ public class distanceCalc : MonoBehaviour
             if (oldPos.x == transform.position.x || oldPos.z == transform.position.z)
             {
                 LoggingMazeData.isMoving = false;
-                print("isMoving: " + LoggingMazeData.isMoving);
+
             }
             else
             {
                 LoggingMazeData.isMoving = true;
-                print("isMoving: " + LoggingMazeData.isMoving);
+
             }
             Vector3 distanceVector = transform.position - oldPos;
             float distanceThisFrame = distanceVector.magnitude;

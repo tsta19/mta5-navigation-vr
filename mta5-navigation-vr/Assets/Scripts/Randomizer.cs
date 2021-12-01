@@ -29,10 +29,10 @@ public class Randomizer : MonoBehaviour
     public void updateMaze() {
         int[] array = getLine(mazeAmount);
         
-        print("oldMAZEID: " + array[idfk]);
+        print("MAZEID: " + array[idfk]);
         WayPointChecker.MazeID = array[idfk];
-        idfk++;
-        print("newMAZEID: " + array[idfk]);
+        
+
         for (int i = 0; i < array.Length; i++)
         {
             print("sokakok" + array[i]);
@@ -44,8 +44,9 @@ public class Randomizer : MonoBehaviour
     }
 
     public GameObject getMaze() {
+
         int[] array = getLine(mazeAmount);
-        int mazeIndex = array[idfk-1];
+        int mazeIndex = array[idfk];
         print("mazearray: " + array);
         print("mazeindex: " + mazeIndex);
         return mazes[mazeIndex - 1];

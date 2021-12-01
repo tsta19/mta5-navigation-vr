@@ -21,6 +21,7 @@ public class PhysicsButton : MonoBehaviour
     private Randomizer randomizer;
     public static bool startButtonPressd;
     public static bool endButtonPressd;
+    public static bool firstPress;
 
     public static bool maze1Bool;
     public static bool maze2Bool;
@@ -50,7 +51,7 @@ public class PhysicsButton : MonoBehaviour
         //start positionen er sat til knappens lokale position, da det er knappens position vi er ude efter, og ikke en position kontra en anden position.
         startPos = transform.localPosition;
         joint = GetComponent<ConfigurableJoint>();
-        
+        firstPress = false;
         randomizer = GetComponent<Randomizer>();
         timers = new float[5];
     }
@@ -62,9 +63,11 @@ public class PhysicsButton : MonoBehaviour
             Pressed();
             if (endpoint)
             {
+                
+                WayPointChecker.MazeTag += 1;
+                Debug.Log(("mazetag; " + WayPointChecker.MazeTag));
                 timers[levelIndex] = Time.time - timers[levelIndex];
-                Debug.Log("Timer stopped");
-                Debug.Log("TIME: " + timers[levelIndex]);
+                Debug.Log("idfk1: " + Randomizer.idfk);
                 endButtonPressd = true;
                 startButtonPressd = false;
                 timerStart = false;
@@ -72,9 +75,7 @@ public class PhysicsButton : MonoBehaviour
                 //Debug.Log("New maze started");
                 //randomizer.mazeArray[WayPointChecker.MazeID][1] = 1;
                 //Debug.Log("mazeaarray" + randomizer.mazeArray);
-                GameObject newMaze = GameObject.Find("randomizerObject");
-                newMaze.GetComponent<Randomizer>().updateMaze();
-                Debug.Log("Mazeid: " + WayPointChecker.MazeID);
+                
                
                 if (WayPointChecker.MazeID == 1)
                 {
@@ -99,9 +100,11 @@ public class PhysicsButton : MonoBehaviour
             }
             if (!endpoint)
             {
+                Player_Teleportation.onlyOne = true;
+                GameObject newMaze = GameObject.Find("randomizerObject");
+                newMaze.GetComponent<Randomizer>().updateMaze();
                 timers[levelIndex] = Time.time;
                 Debug.Log("Timer started");
-                WayPointChecker.MazeTag += 1;
                 startButtonPressd = true;
                 endButtonPressd = false;
                 timerStart = true;
