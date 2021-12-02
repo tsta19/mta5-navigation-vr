@@ -42,16 +42,9 @@ public class Randomizer : MonoBehaviour
         }
         if (WayPointChecker.MazeID == 2)
         {
-            FinalTempDis.arrayIndex = 11;
-        }
-        if (WayPointChecker.MazeID == 3)
-        {
-            FinalTempDis.arrayIndex = 18;
-        }
-        if (WayPointChecker.MazeID == 4)
-        {
             FinalTempDis.arrayIndex = 33;
         }
+
 
         //int[] array = getLine(mazeAmount);
     }

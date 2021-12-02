@@ -73,7 +73,6 @@ public class Player_Teleportation : MonoBehaviour
     {
         if (onlyOne)
         {
-            print("idfk: " + Randomizer.idfk);
             if (PhysicsButton.firstPress)
             {
                 Randomizer.idfk++;
