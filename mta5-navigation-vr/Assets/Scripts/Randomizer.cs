@@ -29,33 +29,27 @@ public class Randomizer : MonoBehaviour
     public void updateMaze() {
         int[] array = getLine(mazeAmount);
         
-        print("MAZEIDhejsa: " + array[idfk]);
         
         //if (PhysicsButton.firstPress)
         //{
         
         //}
-        print("pikMazeID: " + WayPointChecker.MazeID);
         WayPointChecker.MazeID = array[idfk];
 
         if (WayPointChecker.MazeID == 1)
         {
-            Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
             FinalTempDis.arrayIndex = 3;
         }
         if (WayPointChecker.MazeID == 2)
         {
-            Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
             FinalTempDis.arrayIndex = 11;
         }
         if (WayPointChecker.MazeID == 3)
         {
-            Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
             FinalTempDis.arrayIndex = 18;
         }
         if (WayPointChecker.MazeID == 4)
         {
-            Debug.Log("arrayIndex: " + FinalTempDis.arrayIndex);
             FinalTempDis.arrayIndex = 33;
         }
 
@@ -66,8 +60,6 @@ public class Randomizer : MonoBehaviour
 
         int[] array = getLine(mazeAmount);
         int mazeIndex = array[idfk];
-        print("mazearray: " + array);
-        print("mazeindex: " + mazeIndex);
         return mazes[mazeIndex - 1];
     }
 

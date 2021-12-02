@@ -92,10 +92,8 @@ public class FinalFreqDire : MonoBehaviour
 
         //beregner vinkel mellem retningsvektor og nav-device's frontvektor
         angle = Vector3.SignedAngle(_directionVector, transform.forward, Vector3.forward);
-        //Debug.Log("angle: " + angle);
         //Scaler level efter grader (op til vinkelret)
         level = Mathf.Abs(Mathf.CeilToInt(angle / 18));
-        //Debug.Log("level: " + level);
         if (Mathf.Abs(holder) != Mathf.Abs(angle))
         {
             if (level < 5)
@@ -113,13 +111,10 @@ public class FinalFreqDire : MonoBehaviour
 
     public void updateCurrentWayPoint()
     {
-        print("previous waypoint: " + currentWayPoint);
         currentWayPoint = sortedWaypoint[FinalTempDis.arrayIndex];
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
-        Debug.Log("current" + currentWayPoint);
-        print("currentMazeID: " + WayPointChecker.MazeID);
     }
     
     void updateSortedArray()
@@ -185,7 +180,6 @@ public class FinalFreqDire : MonoBehaviour
         deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
         deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
         deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
-        Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
         deviceButtonClickTimerSpent = 0f;
         deviceButtonClickStart = 0;
     }

@@ -53,16 +53,12 @@ public class FinalTempDire : MonoBehaviour
         //Find all waypoints in the 
         wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
         sortedWaypoint = new List<GameObject>();
-        print("sortedWP: "+sortedWaypoint);
         for (int i = 1; i <= wayPoints.Length; i++)
         {
             waypoint = GameObject.Find("Waypoint" + i);
             sortedWaypoint.Add(waypoint);
-            print("LÆNGDE" + wayPoints.Length);
-            print("NAVN" + waypoint);
             
         }
-        print("sorted" + sortedWaypoint);
         updateCurrentWayPoint();
     }
 
@@ -99,8 +95,6 @@ public class FinalTempDire : MonoBehaviour
             pitchMap = Mathf.Lerp(0.508f, 2.004f, normalizedValue);
             sonar1.pitch = pitchMap;
             sonar1.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / sonar1.pitch);
-            print("pitch: " + pitchMap);
-            print("angle: " + Mathf.Abs(angle));
             holder = angle;
         }
         
@@ -112,7 +106,6 @@ public class FinalTempDire : MonoBehaviour
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
-        Debug.Log("current" + currentWayPoint);
         
     }
 
@@ -131,7 +124,6 @@ public class FinalTempDire : MonoBehaviour
     private void Toggle(InputAction.CallbackContext context)
     {
         toggleOnID += 1;
-        Debug.Log("ToggleOn" + toggleOnID);
         deviceButtonClickStart = 1;
         startButtonClickTimer = true;
         deviceButtonClickTimerStart = Time.time;
@@ -144,14 +136,12 @@ public class FinalTempDire : MonoBehaviour
     private void ToggleOff(InputAction.CallbackContext context)
     {
         toggleOffID += 1;
-        Debug.Log("ToggleOff" + toggleOffID);
         deviceButtonClickStop = 1;
         startButtonClickTimer = false;
         deviceButtonClickTimerEnd = Time.time;
         deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
         deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
         deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
-        Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
         deviceButtonClickTimerSpent = 0f;
         deviceButtonClickStart = 0;
         fyrDen = false;

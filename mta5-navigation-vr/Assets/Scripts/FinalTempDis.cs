@@ -76,18 +76,15 @@ public class FinalTempDis : MonoBehaviour
             //print("NAVN" + waypoint);
             
         }
-        print("sorted" + sortedWaypoint);
         updateCurrentWayPoint();
        
         currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         startDis = currentDist;
-        Debug.Log("startdisfromobj: " + currentDist);
     }
 
     void Update()
     {
         checkIfNewMaze();
-        print("currentdist1: " + currentDist);
         // If the distance from the endgoal object changes(it moves) run this code.
         if (holder != currentDist)
         {
@@ -97,15 +94,12 @@ public class FinalTempDis : MonoBehaviour
                 // Maps the pitch values to the distance.
                 normalizedValue = Mathf.InverseLerp(startDis, 0, currentDist);
                 pitchMap = Mathf.Lerp(0.508f, 2.004f, normalizedValue);
-                Debug.Log("currentdist: " + currentDist);
                 // Saves the into the variable witch holds the current pitch.
                 pitchNow = pitchMap;
-                Debug.Log("Pitchmap: " + pitchMap);
                 audioSource.pitch = pitchNow;
                 // Decreases or increases the pitch to counterbalance the increase/decrease audiosource.Pitch does so that
                 // we only end up with the tempo increase.
                 audioSource.outputAudioMixerGroup.audioMixer.SetFloat("pitchBend", 1.0f / audioSource.pitch);
-                Debug.Log("Pitch: " + audioSource.pitch);
                 // Saves the current player distance into the holder variable to show the player is not moving again.
                 holder = currentDist;
             }
@@ -129,8 +123,6 @@ public class FinalTempDis : MonoBehaviour
             audioSource.Play();
             fyrDen = false;
         }
-        print("picth: " + audioSource.pitch);
-        print("currentdist2: " + currentDist);
         currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
         // Thomas kode til distance.
         //connectLines(true);
@@ -161,13 +153,11 @@ public class FinalTempDis : MonoBehaviour
         startButtonClickTimer = true;
         deviceButtonClickTimerStart = Time.time;
         deviceButtonClickStop = 0;
-        print("arrayindex: " + arrayIndex);
     }
 
     private void ToggleOff(InputAction.CallbackContext context)
     {
         toggleOffID += 1;
-        Debug.Log("ToggleOff" + toggleOffID);
         audioSource.loop = false;
         deviceButtonClickStop = 1;
         startButtonClickTimer = false;
@@ -175,7 +165,6 @@ public class FinalTempDis : MonoBehaviour
         deviceButtonClickTimerSpent = deviceButtonClickTimerEnd - deviceButtonClickTimerStart;
         deviceButtonClickTimerSpentHolder = deviceButtonClickTimerSpent;
         deviceButtonClickTimerTotal += deviceButtonClickTimerSpent;
-        Debug.Log("Device On in seconds " + deviceButtonClickTimerSpent);
         deviceButtonClickTimerSpent = 0f;
         deviceButtonClickStart = 0;
     }
@@ -186,7 +175,6 @@ public class FinalTempDis : MonoBehaviour
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
-        Debug.Log("current" + currentWayPoint);
         
     }
     void checkIfNewMaze()

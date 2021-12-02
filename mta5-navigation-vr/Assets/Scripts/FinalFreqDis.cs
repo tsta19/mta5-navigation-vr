@@ -77,14 +77,9 @@ public class FinalFreqDis : MonoBehaviour
         if (checker.imActive == false && arrayIndex < wayPoints.Length)
         {
             updateCurrentWayPoint();
-            Debug.Log("distanceholder1: " + distanceHolder);
-            Debug.Log("distanceholder3: " + currentDist);
             currentDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
             distanceHolder = currentDist;
-            Debug.Log("distanceholder2: " + distanceHolder);
-            print("new waypoint assigned: " + currentWayPoint);
-            print("Waypoint array: " + sortedWaypoint);
-            print("Waypoint array length: " + sortedWaypoint.Count);
+
 
 
         }
@@ -100,8 +95,6 @@ public class FinalFreqDis : MonoBehaviour
 
         //Vi har 5 levels og laver procentvis fremgang for hver 20% tœttere vi kommer på waypoint (100/5=20)
         level = Mathf.CeilToInt((100f - distanceScaled * 100f) / 20f);
-        print("level: " + level);
-        print("distance: " + distance);
         if (holder != distance) //Vi gider ikke lave noget når der ikke er nogen aktivitet alligevel
         {
             if (level < 5)
@@ -156,7 +149,6 @@ public class FinalFreqDis : MonoBehaviour
 
     private void Toggle(InputAction.CallbackContext context)
     {
-        Debug.Log("knaptryk");
         startTimer = true;
     }
 
