@@ -117,6 +117,7 @@ public class FinalFreqDis : MonoBehaviour
         checker = currentWayPoint.GetComponent<WayPointChecker>();
         checker.imActive = true;
         savedDist = Vector3.Distance(currentWayPoint.transform.position, transform.position);
+
     }
     private void Awake()
     {
@@ -125,18 +126,21 @@ public class FinalFreqDis : MonoBehaviour
     }
     void updateSortedArray()
     {
+        print("hej");
         //Find all waypoints in the 
         wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
         sortedWaypoint = new List<GameObject>();
         for (int i = 1; i <= wayPoints.Length; i++)
         {
-            if (WayPointChecker.MazeID == sortedWaypoint[i-1].GetComponent<WayPointChecker>().mazeChecker)
-            {
-                waypoint = GameObject.Find("Waypoint" + i);
-                sortedWaypoint.Add(waypoint);
-                //print("LÆNGDE" + wayPoints.Length);
-                //print("NAVN" + waypoint);
-            }
+            waypoint = GameObject.Find("Waypoint" + i);
+            sortedWaypoint.Add(waypoint);
+            print("LÆNGDE" + wayPoints.Length);
+            print("NAVN" + waypoint);
+            print("hejsaaaaaa");
+            //if (WayPointChecker.MazeID == sortedWaypoint[i-1].GetComponent<WayPointChecker>().mazeChecker)
+            
+                
+            
         }
         //print("sorted" + sortedWaypoint);
         updateCurrentWayPoint();
