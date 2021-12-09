@@ -292,11 +292,15 @@ public class LoggingMazeData : MonoBehaviour
         loggingManager.Log(csvFileName, "Freq/Tempo", FreqTemp);
         loggingManager.Log(csvFileName, "Direction/Distance", DirecDist);
         
+        // Event Logger
+        loggingManager.Log(csvFileName, "StartPointButtonPress", PhysicsButton.startButtonPressd);
+        loggingManager.Log(csvFileName, "EndPointButtonPress", PhysicsButton.endButtonPressd);
+        
         // Sample Logger
         loggingManager.Log(csvFileName, "TravelDistance", distanceCalc.totalDistance);
         loggingManager.Log(csvFileName, "TimeSinceLastFrame", Time.deltaTime);
         loggingManager.Log(csvFileName, "MazeTime", PhysicsButton.timers[PhysicsButton.levelIndex]);
-        loggingManager.Log(csvFileName, "EvaluationTime", placeholder);
+        loggingManager.Log(csvFileName, "EvaluationTime", Time.time);
         loggingManager.Log(csvFileName, "PlayerPositionX", player.transform.position.x);
         loggingManager.Log(csvFileName, "PlayerPositionY", player.transform.position.y);
         loggingManager.Log(csvFileName, "PlayerPositionZ", player.transform.position.z);
